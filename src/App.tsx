@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react'
+import { Button, StatHelpText, StatNumber } from '@chakra-ui/react'
 
 import {
   Box,
@@ -12,6 +12,8 @@ import {
   Flex,
   Spacer,
   Stack,
+  Stat,
+  StatLabel,
   Text,
 } from '@chakra-ui/react'
 
@@ -24,10 +26,10 @@ const App = () => {
 
   const optionsBeforeRepair = ['Holowanie z miejsca awarii', 'Auto zastępcze', 'Dojazd do miejsca awarii']
 
-  const optionsAfterRepair = ['Bonus za naprawę na miejscu', 'Odwiezienie < 50 km']
+  const optionsAfterRepair = ['Bonus za naprawę na miejscu', 'Odwiezienie < 50 km', 'Opłata za dokumentację']
 
   const appHeader = (
-    <Flex align="center" padding={'16px'} gap="">
+    <Flex align="center">
       <Button onClick={() => setDrawerOpen(true)}>
         <HamburgerIcon />
       </Button>
@@ -40,6 +42,23 @@ const App = () => {
     </Flex>
   )
 
+  const singleService = (
+    <Flex borderBottom="2px" borderColor="gray.600" p="1" px="4" align="center" justify="space-between" w="100%">
+      <Text flex="1 1 1">Jakas usluga</Text>
+      <Stat w="fit-content" flex="0 1 0">
+        <StatLabel>Opłata</StatLabel>
+        <StatNumber whiteSpace="nowrap">1000 zł</StatNumber>
+        <StatHelpText>Ryczałt</StatHelpText>
+      </Stat>
+    </Flex>
+  )
+
+  const appServiceList = (
+    <Stack overflowY="auto" shadow="dark-lg" rounded="base" flex="1" h="100%" bg="chakra-subtle-bg">
+      {Array.from({ length: 10 }).map(() => singleService)}
+    </Stack>
+  )
+
   const servicesDrawer = (
     <Drawer isOpen={drawerOpen} placement="left" onClose={() => setDrawerOpen(false)}>
       <DrawerOverlay />
@@ -48,7 +67,7 @@ const App = () => {
         <DrawerHeader>Wybierz usługę mobilności</DrawerHeader>
 
         <DrawerBody>
-          <Stack align={'center'}>
+          <Stack align={'center'} h="100%">
             <Text>Usługi przed naprawą</Text>
             {optionsBeforeRepair.map((option) => (
               <Button width="100%" key={option} placeholder={option}>
@@ -75,10 +94,11 @@ const App = () => {
   )
 
   return (
-    <>
+    <Stack overflow="hidden" padding="4" gap="16px" h="100vh">
       {appHeader}
+      {appServiceList}
       {servicesDrawer}
-    </>
+    </Stack>
   )
 }
 
