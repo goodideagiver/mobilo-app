@@ -1,8 +1,6 @@
 import {
   Badge,
   Box,
-  Button,
-  Divider,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -17,31 +15,15 @@ import {
   VStack,
 } from '@chakra-ui/react'
 
-import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  Flex,
-  Stack,
-  Stat,
-  StatLabel,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, Stack, Stat, StatLabel, Text } from '@chakra-ui/react'
 
 import { CloseIcon, CopyIcon, DeleteIcon, HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
 
 import { useState } from 'react'
+import { ServicePickDrawer } from './components/servicePickDrawer/servicePickDrawer'
 
 const App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
-
-  const optionsBeforeRepair = ['Holowanie z miejsca awarii', 'Auto zastępcze', 'Dojazd do miejsca awarii']
-
-  const optionsAfterRepair = ['Bonus za naprawę na miejscu', 'Odwiezienie pojazdu', 'Opłata za dokumentację']
 
   const appHeader = (
     <Flex w="100%" align="center" justify="space-between" gap="2">
@@ -150,46 +132,11 @@ const App = () => {
     </Stack>
   )
 
-  const servicesDrawer = (
-    <Drawer isOpen={drawerOpen} placement="left" onClose={() => setDrawerOpen(false)}>
-      <DrawerOverlay />
-      <DrawerContent>
-        <DrawerCloseButton />
-        <DrawerHeader>Wybierz usługę mobilności</DrawerHeader>
-
-        <DrawerBody>
-          <Stack align={'center'} h="100%">
-            <Text>Usługi przed naprawą</Text>
-            {optionsBeforeRepair.map((option) => (
-              <Button width="100%" key={option} placeholder={option}>
-                {option}
-              </Button>
-            ))}
-            <Divider />
-            <Text>Usługi po naprawie</Text>
-            {optionsAfterRepair.map((option) => (
-              <Button width="100%" key={option} placeholder={option}>
-                {option}
-              </Button>
-            ))}
-          </Stack>
-        </DrawerBody>
-
-        <DrawerFooter>
-          <Button variant="outline" mr={3} onClick={() => setDrawerOpen(false)}>
-            Cancel
-          </Button>
-          <Button colorScheme="blue">Save</Button>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  )
-
   return (
     <Stack overflow="hidden" padding="4" gap="16px" h="100vh">
       {appHeader}
       {appServiceList}
-      {servicesDrawer}
+      <ServicePickDrawer isOpen={drawerOpen} drawerCloseHandler={() => setDrawerOpen(false)} />
     </Stack>
   )
 }
