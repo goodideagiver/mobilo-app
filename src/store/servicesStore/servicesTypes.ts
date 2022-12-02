@@ -6,7 +6,7 @@ export type TopLevelSettings = {
 
 type ServiceType = 'before repair' | 'after repair'
 
-type ServiceBadge = 'ryczałt' | 'po naprawie' | 'przed naprawą'
+export type ServiceBadge = 'ryczałt' | 'po naprawie' | 'przed naprawą'
 
 export interface Service {
   title: string
