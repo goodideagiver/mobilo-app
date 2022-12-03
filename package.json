@@ -20,13 +20,15 @@
   ],
   "author": "Karol Bartkiewicz",
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "framer-motion": "^7.6.15",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.4.3"
+    "react-router-dom": "6.4.3",
+    "zustand": "^4.1.4"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
