@@ -1,4 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 import { Service } from '../../../store/servicesStore/servicesTypes'
 import { Badges } from './badges'
 import { CopyText } from './copyText'
@@ -7,8 +8,10 @@ import { PriceDisplay } from './priceDisplay'
 
 type Props = {
   service: Service
+  textToCopy?: string
+  children?: ReactNode
 }
-export const ServiceListItem = ({ service }: Props) => {
+export const ServiceListItem = ({ service, textToCopy, children }: Props) => {
   const { title, price, badges } = service
 
   return (
@@ -26,7 +29,8 @@ export const ServiceListItem = ({ service }: Props) => {
         {title}
       </Text>
       <Badges badges={badges} />
-      <CopyText textToCopy="lorem ipsum" />
+      {children}
+      <CopyText textToCopy={textToCopy} />
       <PriceDisplay price={price} />
       <DeleteServiceButton onDelete={() => console.log('delete')} />
     </Flex>

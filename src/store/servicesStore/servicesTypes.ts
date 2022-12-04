@@ -11,7 +11,7 @@ export type ServiceBadge = 'ryczałt' | 'po naprawie' | 'przed naprawą'
 export interface Service {
   title: string
   active: boolean
-  preventCombineGroup: string
+  preventCombineGroup: string | null
   serviceType: ServiceType
   badges: ServiceBadge[]
   serviceSummaryText?: string
