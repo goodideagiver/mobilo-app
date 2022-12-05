@@ -1,6 +1,6 @@
 export type TopLevelSettings = {
-  distanceFromBreakLocation: number
-  distanceTowBack: number
+  distanceBeforeRepair: number
+  distanceAfterRepair: number
   vehicleWeight: 'below 3.5t' | '3.5t-5.5t'
 }
 
