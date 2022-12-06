@@ -19,15 +19,6 @@ type SingleService = {
   active: boolean
 }
 
-interface ServiceState {
-  settings: TopLevelSettings
-  services: SingleService[]
-  setDistanceBeforeRepair: (distance: number) => void
-  setDistanceAfterRepair: (distance: number) => void
-  setVehicleWeight: (weight: TopLevelSettings['vehicleWeight']) => void
-  toggleService: (id: string) => void
-}
-
 const defaultServices: SingleService[] = [
   {
     title: 'Holowanie z miejsca awarii',
@@ -79,6 +70,16 @@ const defaultServices: SingleService[] = [
   },
 ]
 
+interface ServiceState {
+  settings: TopLevelSettings
+  services: SingleService[]
+  setDistanceBeforeRepair: (distance: number) => void
+  setDistanceAfterRepair: (distance: number) => void
+  setVehicleWeight: (weight: TopLevelSettings['vehicleWeight']) => void
+  toggleService: (id: string) => void
+  resetServices: () => void
+}
+
 const initialState = {
   settings: defaultSettings,
   services: defaultServices,
@@ -121,5 +122,10 @@ export const useServicesStore = create<ServiceState>((set) => ({
             }
           : service,
       ),
+    })),
+  resetServices: () =>
+    set((state) => ({
+      ...state,
+      services: defaultServices,
     })),
 }))

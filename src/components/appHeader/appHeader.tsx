@@ -25,9 +25,8 @@ type Props = {
   drawerOpenHandler: () => void
 }
 export const AppHeader = ({ drawerOpenHandler }: Props) => {
-  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight } = useServicesStore(
-    (state) => state,
-  )
+  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, resetServices } =
+    useServicesStore((state) => state)
 
   const distanceInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDistanceBeforeRepair(Number(event.target.value))
@@ -36,6 +35,8 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
   const distanceAfterRepairInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDistanceAfterRepair(Number(event.target.value))
   }
+
+  const resetButtonHandler = () => resetServices()
 
   const vehicleWeightInputHandler = (weight: string) => {
     if (weight === '1') {
@@ -89,7 +90,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
 
       <HStack>
         <Tooltip hasArrow label="Resetuj wszystko">
-          <IconButton aria-label="Resetuj wszystko">
+          <IconButton onClick={resetButtonHandler} aria-label="Resetuj wszystko">
             <DeleteIcon />
           </IconButton>
         </Tooltip>
