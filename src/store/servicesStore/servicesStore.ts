@@ -48,7 +48,7 @@ const defaultServices: SingleService[] = [
     title: 'Bonus za naprawę na miejscu',
     id: '4',
     mixGroup: 1,
-    price: 0,
+    price: 100,
     textSummary: 'Bonus za naprawę na miejscu 100 zł',
     active: false,
   },
@@ -64,7 +64,7 @@ const defaultServices: SingleService[] = [
     title: 'Dokumentacja',
     id: '6',
     mixGroup: 1,
-    price: 0,
+    price: 100,
     textSummary: 'Ryczałt 100 zł za wykonanie dokumentacji',
     active: false,
   },
@@ -78,6 +78,8 @@ interface ServiceState {
   setVehicleWeight: (weight: TopLevelSettings['vehicleWeight']) => void
   toggleService: (id: string) => void
   resetServices: () => void
+  setServicePrice: (id: string, price: number) => void
+  setServiceTextSummary: (id: string, textSummary: string) => void
 }
 
 const initialState = {
@@ -127,5 +129,29 @@ export const useServicesStore = create<ServiceState>((set) => ({
     set((state) => ({
       ...state,
       services: defaultServices,
+    })),
+  setServicePrice: (id, price) =>
+    set((state) => ({
+      ...state,
+      services: state.services.map((service) =>
+        service.id === id
+          ? {
+              ...service,
+              price,
+            }
+          : service,
+      ),
+    })),
+  setServiceTextSummary: (id, textSummary) =>
+    set((state) => ({
+      ...state,
+      services: state.services.map((service) =>
+        service.id === id
+          ? {
+              ...service,
+              textSummary,
+            }
+          : service,
+      ),
     })),
 }))

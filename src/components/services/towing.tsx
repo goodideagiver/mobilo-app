@@ -48,9 +48,5 @@ export const Towing = () => {
     preventCombineGroup: null,
   }
 
-  return (
-    <ServiceListItem service={serviceData} textToCopy={textToCopy}>
-      Waga pojazdu: {vehicleWeight}
-    </ServiceListItem>
-  )
+  return <ServiceListItem service={serviceData} textToCopy={textToCopy} />
 }

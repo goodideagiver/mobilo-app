@@ -19,13 +19,14 @@ import {
 } from '@chakra-ui/react'
 
 import { ChangeEventHandler } from 'react'
+import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 
 type Props = {
   drawerOpenHandler: () => void
 }
 export const AppHeader = ({ drawerOpenHandler }: Props) => {
-  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, resetServices } =
+  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, resetServices, services } =
     useServicesStore((state) => state)
 
   const distanceInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -45,6 +46,10 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       setVehicleWeight('below 3.5t')
     }
   }
+
+  const activeServices = services.filter((service) => service.active)
+
+  const activeServiceSummary = activeServices.reduce((prev, curr) => prev + curr.price, 0)
 
   return (
     <Flex w="100%" align="center" justify="space-between" gap="2">
@@ -82,7 +87,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
         <Stat h="100%">
           <Stack>
             <StatLabel>Razem</StatLabel>
-            <StatNumber>1000,65 zł</StatNumber>
+            <StatNumber>{numberToOutputCurrencyString(activeServiceSummary)}</StatNumber>
             <StatHelpText>Całkowita wartość usług</StatHelpText>
           </Stack>
         </Stat>
