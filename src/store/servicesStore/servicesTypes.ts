@@ -1,7 +1,9 @@
+export type VehicleWeight = 'below 3.5t' | '3.5t-5.5t'
+
 export type TopLevelSettings = {
   distanceBeforeRepair: number
   distanceAfterRepair: number
-  vehicleWeight: 'below 3.5t' | '3.5t-5.5t'
+  vehicleWeight: VehicleWeight
 }
 
 type ServiceType = 'before repair' | 'after repair'

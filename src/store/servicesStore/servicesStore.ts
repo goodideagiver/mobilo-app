@@ -1,5 +1,7 @@
 import { Service, TopLevelSettings } from './servicesTypes'
 
+import create from 'zustand'
+
 const defaultSettings: TopLevelSettings = {
   distanceAfterRepair: 0,
   distanceBeforeRepair: 0,
@@ -9,9 +11,12 @@ const defaultSettings: TopLevelSettings = {
 interface ServiceState {
   settings: TopLevelSettings
   services: Service[]
+  setDistanceBeforeRepair: (distance: number) => void
+  setDistanceAfterRepair: (distance: number) => void
+  setVehicleWeight: (weight: TopLevelSettings['vehicleWeight']) => void
 }
 
-const initialState: ServiceState = {
+const initialState = {
   settings: defaultSettings,
   services: [
     {
@@ -24,3 +29,31 @@ const initialState: ServiceState = {
     },
   ],
 }
+
+export const useServicesStore = create<ServiceState>((set) => ({
+  ...initialState,
+  setDistanceBeforeRepair: (distance) =>
+    set((state) => ({
+      ...state,
+      settings: {
+        ...state.settings,
+        distanceBeforeRepair: distance,
+      },
+    })),
+  setDistanceAfterRepair: (distance) =>
+    set((state) => ({
+      ...state,
+      settings: {
+        ...state.settings,
+        distanceAfterRepair: distance,
+      },
+    })),
+  setVehicleWeight: (weight) =>
+    set((state) => ({
+      ...state,
+      settings: {
+        ...state.settings,
+        vehicleWeight: weight,
+      },
+    })),
+}))
