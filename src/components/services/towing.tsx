@@ -10,6 +10,12 @@ type Fee = {
 export const Towing = () => {
   const { distanceBeforeRepair, vehicleWeight } = useServicesStore((state) => state.settings)
 
+  const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === '1'))
+
+  const isActive = towingServiceStore?.active
+
+  if (!isActive) return null
+
   const handlingFee: Fee = {
     ['below 3.5t']: 600,
     ['3.5t-5.5t']: 800,
