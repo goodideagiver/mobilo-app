@@ -7,7 +7,7 @@ type Props = {
 
 export const Badges = ({ badges }: Props) => {
   return (
-    <VStack>
+    <VStack flexBasis={'10%'}>
       {badges.map((badge) => {
         return <Badge colorScheme="green">{badge}</Badge>
       })}

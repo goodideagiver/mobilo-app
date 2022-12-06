@@ -25,7 +25,7 @@ export const ServiceListItem = ({ service, textToCopy, children }: Props) => {
       justify="space-between"
       w="100%"
     >
-      <Text fontWeight="bold" flex="1 1 1">
+      <Text fontWeight="bold" flex="1 1 10%">
         {title}
       </Text>
       <Badges badges={badges} />

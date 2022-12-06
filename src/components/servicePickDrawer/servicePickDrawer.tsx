@@ -1,6 +1,5 @@
 import {
   Button,
-  Divider,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -8,8 +7,8 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Stack,
-  Text,
 } from '@chakra-ui/react'
+import { useServicesStore } from '../../store/servicesStore/servicesStore'
 
 const optionsBeforeRepair = ['Holowanie z miejsca awarii', 'Auto zastępcze', 'Dojazd do miejsca awarii']
 
@@ -20,6 +19,11 @@ type Props = {
   drawerCloseHandler: () => void
 }
 export const ServicePickDrawer = ({ isOpen, drawerCloseHandler }: Props) => {
+  const services = useServicesStore((state) => state.services)
+  const toggleService = useServicesStore((state) => state.toggleService)
+
+  const unpickedServices = services.filter((service) => !service.active)
+
   return (
     <Drawer isOpen={isOpen} placement="left" onClose={drawerCloseHandler}>
       <DrawerOverlay />
@@ -29,17 +33,9 @@ export const ServicePickDrawer = ({ isOpen, drawerCloseHandler }: Props) => {
 
         <DrawerBody>
           <Stack align={'center'} h="100%">
-            <Text>Usługi przed naprawą</Text>
-            {optionsBeforeRepair.map((option) => (
-              <Button width="100%" key={option} placeholder={option}>
-                {option}
-              </Button>
-            ))}
-            <Divider />
-            <Text>Usługi po naprawie</Text>
-            {optionsAfterRepair.map((option) => (
-              <Button width="100%" key={option} placeholder={option}>
-                {option}
+            {unpickedServices.map((option) => (
+              <Button onClick={() => toggleService(option.id)} width="100%" key={option.id} placeholder={option.title}>
+                {option.title}
               </Button>
             ))}
           </Stack>

@@ -61,7 +61,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
         </FormControl>
         <FormControl>
           <FormLabel>Odległość odwiezienia</FormLabel>
-          <Input type="number" value={100} onChange={() => console.log('siem')} />
+          <Input type="number" value={settings.distanceAfterRepair} onChange={distanceAfterRepairInputHandler} />
           <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
         </FormControl>
         <FormControl>

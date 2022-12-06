@@ -1,4 +1,4 @@
-import { Service, TopLevelSettings } from './servicesTypes'
+import { TopLevelSettings } from './servicesTypes'
 
 import create from 'zustand'
 
@@ -8,26 +8,80 @@ const defaultSettings: TopLevelSettings = {
   vehicleWeight: 'below 3.5t',
 }
 
+export type MixGroup = 1 | 2 | 3 | null
+
+type SingleService = {
+  id: string
+  mixGroup: MixGroup
+  price: number
+  title: string
+  textSummary: string
+  active: boolean
+}
+
 interface ServiceState {
   settings: TopLevelSettings
-  services: Service[]
+  services: SingleService[]
   setDistanceBeforeRepair: (distance: number) => void
   setDistanceAfterRepair: (distance: number) => void
   setVehicleWeight: (weight: TopLevelSettings['vehicleWeight']) => void
+  toggleService: (id: string) => void
 }
+
+const defaultServices: SingleService[] = [
+  {
+    title: 'Holowanie z miejsca awarii',
+    id: '1',
+    mixGroup: 1,
+    price: 0,
+    textSummary: '',
+    active: false,
+  },
+  {
+    title: 'Auto zastępcze',
+    id: '2',
+    mixGroup: 2,
+    price: 0,
+    textSummary: '',
+    active: false,
+  },
+  {
+    title: 'Dojazd do miejsca awarii',
+    id: '3',
+    mixGroup: 1,
+    price: 0,
+    textSummary: '',
+    active: false,
+  },
+  {
+    title: 'Bonus za naprawę na miejscu',
+    id: '4',
+    mixGroup: 1,
+    price: 0,
+    textSummary: 'Bonus za naprawę na miejscu 100 zł',
+    active: false,
+  },
+  {
+    title: 'Odwiezienie auta',
+    id: '5',
+    mixGroup: 1,
+    price: 0,
+    textSummary: '',
+    active: false,
+  },
+  {
+    title: 'Dokumentacja',
+    id: '6',
+    mixGroup: 1,
+    price: 0,
+    textSummary: 'Ryczałt 100 zł za wykonanie dokumentacji',
+    active: false,
+  },
+]
 
 const initialState = {
   settings: defaultSettings,
-  services: [
-    {
-      active: true,
-      preventCombineGroup: '1',
-      serviceType: 'before repair',
-      badges: ['przed naprawą'],
-      price: 0,
-      title: 'Holowanie',
-    },
-  ],
+  services: defaultServices,
 }
 
 export const useServicesStore = create<ServiceState>((set) => ({
@@ -55,5 +109,17 @@ export const useServicesStore = create<ServiceState>((set) => ({
         ...state.settings,
         vehicleWeight: weight,
       },
+    })),
+  toggleService: (id) =>
+    set((state) => ({
+      ...state,
+      services: state.services.map((service) =>
+        service.id === id
+          ? {
+              ...service,
+              active: !service.active,
+            }
+          : service,
+      ),
     })),
 }))
