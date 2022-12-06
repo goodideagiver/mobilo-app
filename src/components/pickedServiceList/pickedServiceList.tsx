@@ -22,6 +22,8 @@ export const PickedServiceList = ({ services }: Props) => {
           preventCombineGroup: null,
           serviceType: 'before repair',
         }}
+        textToCopy={`KLASA A AUTO ZASTĘPCZE NA 12 DNI X STAWKA 240 zł netto za dobę = 2880 zł
+`}
       >
         <Select flex={'0 0 400px'} placeholder="Wybierz model">
           {rentCars.map((car) => (
@@ -40,6 +42,8 @@ export const PickedServiceList = ({ services }: Props) => {
           preventCombineGroup: null,
           serviceType: 'before repair',
         }}
+        textToCopy={`CZAS PRACY MECHANIKA 1 h X STAWKA GWR 210 zł/h +50 KM X 5,85zł netto = 502,5 zł
+`}
       >
         <HStack>
           <Input placeholder="RBH" type="number" />
