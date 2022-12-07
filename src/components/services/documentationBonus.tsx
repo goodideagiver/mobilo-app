@@ -19,5 +19,7 @@ export const DocumentationBonus = () => {
     preventCombineGroup: null,
   }
 
-  return <ServiceListItem service={serviceData} textToCopy="Ryczałt 100 zł za sporządzenie dokumentacji" />
+  return (
+    <ServiceListItem serviceId="6" service={serviceData} textToCopy="Ryczałt 100 zł za sporządzenie dokumentacji" />
+  )
 }

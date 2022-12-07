@@ -10,7 +10,7 @@ export const PickedServiceList = () => {
   return (
     <Stack overflowY="auto" shadow="dark-lg" rounded="xl" flex="1" h="100%" bg="chakra-subtle-bg">
       <DocumentationBonus />
-      <Towing />
+      <Towing serviceId="1" />
       <RentCar />
       <DriveToClient />
       <RepairOnSiteBonus />

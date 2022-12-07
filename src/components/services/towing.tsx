@@ -3,10 +3,14 @@ import { handlingFee, rate, useServicesStore } from '../../store/servicesStore/s
 import { Service } from '../../store/servicesStore/servicesTypes'
 import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
 
-export const Towing = () => {
+type Props = {
+  serviceId: string
+}
+
+export const Towing = ({ serviceId }: Props) => {
   const { distanceBeforeRepair, vehicleWeight } = useServicesStore((state) => state.settings)
 
-  const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === '1'))
+  const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === serviceId))
 
   const isActive = towingServiceStore?.active
 
@@ -34,5 +38,5 @@ export const Towing = () => {
     preventCombineGroup: null,
   }
 
-  return <ServiceListItem service={serviceData} textToCopy={textToCopy} />
+  return <ServiceListItem serviceId={serviceId} service={serviceData} textToCopy={textToCopy} />
 }

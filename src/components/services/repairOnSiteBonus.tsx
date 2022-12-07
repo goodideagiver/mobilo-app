@@ -10,6 +10,7 @@ export const RepairOnSiteBonus = () => {
 
   return (
     <ServiceListItem
+      serviceId="4"
       service={{
         active: true,
         badges: ['po naprawie', 'ryczałt'],

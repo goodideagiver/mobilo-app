@@ -12,6 +12,7 @@ export const RentCar = () => {
 
   return (
     <ServiceListItem
+      serviceId="2"
       service={{
         active: true,
         badges: ['przed naprawą'],

@@ -11,6 +11,7 @@ export const DriveToClient = () => {
 
   return (
     <ServiceListItem
+      serviceId="3"
       service={{
         active: true,
         badges: ['przed naprawą'],

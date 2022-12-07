@@ -12,6 +12,7 @@ export const TowBack = () => {
   if (!(distance < 50))
     return (
       <ServiceListItem
+        serviceId="5"
         service={{
           active: true,
           badges: ['po naprawie'],
@@ -29,6 +30,7 @@ RAZEM = 0,00 ZL NETTO
 
   return (
     <ServiceListItem
+      serviceId="5"
       service={{
         active: true,
         badges: ['po naprawie', 'ryczałt'],
