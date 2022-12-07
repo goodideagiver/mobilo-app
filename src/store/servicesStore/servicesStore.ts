@@ -72,7 +72,7 @@ const defaultServices: SingleService[] = [
     title: 'Odwiezienie auta',
     id: '5',
     mixGroup: 1,
-    price: 0,
+    price: defaultSettings.distanceAfterRepair < 50 ? 300 : defaultSettings.distanceAfterRepair * 1.41 * 4 + 60.03 * 4,
     textSummary: '',
     active: false,
   },
