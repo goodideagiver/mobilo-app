@@ -38,7 +38,9 @@ const defaultServices: SingleService[] = [
     title: 'Holowanie z miejsca awarii',
     id: '1',
     mixGroup: 1,
-    price: 0,
+    price:
+      handlingFee[defaultSettings.vehicleWeight] +
+      rate[defaultSettings.vehicleWeight] * defaultSettings.distanceBeforeRepair,
     textSummary: '',
     active: false,
   },
