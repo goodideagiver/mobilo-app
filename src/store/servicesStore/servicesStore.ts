@@ -1,4 +1,4 @@
-import { TopLevelSettings } from './servicesTypes'
+import { TopLevelSettings, VehicleWeight } from './servicesTypes'
 
 import create from 'zustand'
 
@@ -17,6 +17,20 @@ type SingleService = {
   title: string
   textSummary: string
   active: boolean
+}
+
+type Fee = {
+  [K in VehicleWeight]: number
+}
+
+export const handlingFee: Fee = {
+  ['below 3.5t']: 600,
+  ['3.5t-5.5t']: 800,
+}
+
+export const rate: Fee = {
+  ['below 3.5t']: 4.9,
+  ['3.5t-5.5t']: 12.5,
 }
 
 const defaultServices: SingleService[] = [
@@ -92,6 +106,15 @@ export const useServicesStore = create<ServiceState>((set) => ({
   setDistanceBeforeRepair: (distance) =>
     set((state) => ({
       ...state,
+      services: state.services.map((service) => {
+        if (service.id === '1') {
+          return {
+            ...service,
+            price: distance * rate[state.settings.vehicleWeight] + handlingFee[state.settings.vehicleWeight],
+          }
+        }
+        return service
+      }),
       settings: {
         ...state.settings,
         distanceBeforeRepair: distance,
@@ -100,6 +123,15 @@ export const useServicesStore = create<ServiceState>((set) => ({
   setDistanceAfterRepair: (distance) =>
     set((state) => ({
       ...state,
+      services: state.services.map((service) => {
+        if (service.id === '5') {
+          return {
+            ...service,
+            price: distance < 50 ? 300 : distance * 1.41 * 4 + 60.03 * 4,
+          }
+        }
+        return service
+      }),
       settings: {
         ...state.settings,
         distanceAfterRepair: distance,

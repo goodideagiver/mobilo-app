@@ -62,12 +62,17 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       <HStack h="100%" rounded="2xl" p="4" shadow="lg" border="4px" borderColor="gray.700" align="baseline">
         <FormControl>
           <FormLabel>Odległość</FormLabel>
-          <Input type="number" value={settings.distanceBeforeRepair} onChange={distanceInputHandler} />
+          <Input type="number" min="0" value={settings.distanceBeforeRepair} onChange={distanceInputHandler} />
           <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
         </FormControl>
         <FormControl>
           <FormLabel>Odległość odwiezienia</FormLabel>
-          <Input type="number" value={settings.distanceAfterRepair} onChange={distanceAfterRepairInputHandler} />
+          <Input
+            type="number"
+            min="0"
+            value={settings.distanceAfterRepair}
+            onChange={distanceAfterRepairInputHandler}
+          />
           <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
         </FormControl>
         <FormControl>

@@ -15,8 +15,8 @@ export const TowBack = () => {
         service={{
           active: true,
           badges: ['po naprawie'],
-          price: 100,
-          title: 'Odwiezienie pojazdu',
+          price: towingServiceStore.price,
+          title: 'Odwiezienie pojazdu od 50 km',
           preventCombineGroup: null,
           serviceType: 'after repair',
         }}
@@ -32,8 +32,8 @@ RAZEM = 0,00 ZL NETTO
       service={{
         active: true,
         badges: ['po naprawie', 'ryczałt'],
-        price: 100,
-        title: 'Odwiezienie pojazdu',
+        price: towingServiceStore.price,
+        title: 'Odwiezienie pojazdu do 50 km',
         preventCombineGroup: null,
         serviceType: 'after repair',
       }}

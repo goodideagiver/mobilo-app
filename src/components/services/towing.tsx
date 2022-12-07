@@ -1,11 +1,7 @@
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
-import { useServicesStore } from '../../store/servicesStore/servicesStore'
-import { Service, VehicleWeight } from '../../store/servicesStore/servicesTypes'
+import { handlingFee, rate, useServicesStore } from '../../store/servicesStore/servicesStore'
+import { Service } from '../../store/servicesStore/servicesTypes'
 import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
-
-type Fee = {
-  [K in VehicleWeight]: number
-}
 
 export const Towing = () => {
   const { distanceBeforeRepair, vehicleWeight } = useServicesStore((state) => state.settings)
@@ -15,16 +11,6 @@ export const Towing = () => {
   const isActive = towingServiceStore?.active
 
   if (!isActive) return null
-
-  const handlingFee: Fee = {
-    ['below 3.5t']: 600,
-    ['3.5t-5.5t']: 800,
-  }
-
-  const rate: Fee = {
-    ['below 3.5t']: 4.9,
-    ['3.5t-5.5t']: 12.5,
-  }
 
   const handlingFeeFormatted = numberToOutputCurrencyString(handlingFee[vehicleWeight])
 
@@ -40,7 +26,7 @@ export const Towing = () => {
 
   const serviceData: Service = {
     title: 'Holowanie',
-    price: rate[vehicleWeight] * distanceBeforeRepair + handlingFee[vehicleWeight],
+    price: towingServiceStore.price,
     badges: ['przed naprawą'],
     active: true,
     serviceType: 'after repair',
