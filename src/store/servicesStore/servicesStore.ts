@@ -146,6 +146,15 @@ export const useServicesStore = create<ServiceState>((set) => ({
         ...state.settings,
         vehicleWeight: weight,
       },
+      services: state.services.map((service) => {
+        if (service.id === '1') {
+          return {
+            ...service,
+            price: state.settings.distanceBeforeRepair * rate[weight] + handlingFee[weight],
+          }
+        }
+        return service
+      }),
     })),
   toggleService: (id) =>
     set((state) => ({
