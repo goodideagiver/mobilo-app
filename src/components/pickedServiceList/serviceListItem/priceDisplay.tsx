@@ -14,7 +14,7 @@ export const PriceDisplay = ({ price }: Props) => {
   const buttonContent = hasCopied ? <CheckIcon /> : priceFormatted
 
   return (
-    <Stat w="fit-content" flex="0 1 0">
+    <Stat display={'flex'} justifyContent="center" w="fit-content" flex="0 0 120px">
       <CopyTooltip hasCopied={hasCopied}>
         <button onClick={onCopy}>
           <StatLabel>Opłata</StatLabel>

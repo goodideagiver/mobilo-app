@@ -40,11 +40,11 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
       justify="space-between"
       w="100%"
     >
-      <Text fontWeight="bold" flex="1 1 10%">
+      <Text fontWeight="bold" flex="1 0 100px">
         {title}
       </Text>
-      <Badges badges={badges} />
       {children}
+      <Badges badges={badges} />
       <CopyText hasError={hasError} textToCopy={textToCopy} />
       <PriceDisplay price={price} />
       <DeleteServiceButton onDelete={deleteServiceButtonHandler} />

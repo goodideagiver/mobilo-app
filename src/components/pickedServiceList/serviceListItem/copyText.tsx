@@ -31,8 +31,18 @@ export const CopyText = ({ textToCopy, hasError }: Props) => {
   const textStyle = hasError ? textErrorStyle : {}
 
   return (
-    <HStack maxW="30%" {...errorStyle} bg="chakra-body-bg" rounded="md" shadow="md" p="2">
-      <Text {...textStyle}>{textToCopy}</Text>
+    <HStack
+      justifyContent={'space-between'}
+      flex="0 0 350px"
+      {...errorStyle}
+      bg="chakra-body-bg"
+      rounded="md"
+      shadow="md"
+      p="2"
+    >
+      <Text {...textStyle} maxH="4em" overflow={'auto'}>
+        {textToCopy}
+      </Text>
       <CopyTooltip hasCopied={hasCopied}>
         <IconButton onClick={onCopy} aria-label="Skopiuj do schowka">
           {buttonIcon}
