@@ -63,7 +63,7 @@ export const CopyText = ({ textToCopy, hasError }: Props) => {
       shadow="md"
       p="2"
     >
-      <Text {...textStyle} fontSize={'xs'} maxH="4em" overflow={'auto'}>
+      <Text {...textStyle} fontSize={'xs'} fontFamily="mono" maxH="4em" overflow={'auto'}>
         {replacePolishChars(textToCopy)}
       </Text>
       <CopyTooltip hasCopied={hasCopied}>

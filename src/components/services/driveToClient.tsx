@@ -27,6 +27,17 @@ export const DriveToClient = () => {
 
   const isInvalid = !hours || !rate || !distance || hours < 0 || rate < 0 || distance < 0 || hours === 0
 
+  const textToCopy = `
+      Dojazd i powrot z miejsca awarii:
+      CZAS PRACY MECHANIKA ${hours} h X STAWKA ${numberToOutputCurrencyString(rate)}/h + ${
+    distance * 2
+  } KM X ${numberToOutputCurrencyString(driveToClientCostPerKM)} = ${numberToOutputCurrencyString(
+    driveToClientServiceStore.price,
+  )}
+`.toUpperCase()
+
+  const displayText = isInvalid ? 'Podaj: odległość, stawkę oraz roboczogodziny żeby obliczyć wartość' : textToCopy
+
   return (
     <ServiceListItem
       hasError={isInvalid}
@@ -39,14 +50,7 @@ export const DriveToClient = () => {
         preventCombineGroup: null,
         serviceType: 'before repair',
       }}
-      textToCopy={`
-      Dojazd i powrot z miejsca awarii:
-      CZAS PRACY MECHANIKA ${hours} h X STAWKA ${numberToOutputCurrencyString(rate)}/h + ${
-        distance * 2
-      } KM X ${numberToOutputCurrencyString(driveToClientCostPerKM)} = ${numberToOutputCurrencyString(
-        driveToClientServiceStore.price,
-      )}
-`.toUpperCase()}
+      textToCopy={displayText}
     >
       <HStack>
         <FormControl>
