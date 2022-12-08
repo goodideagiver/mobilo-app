@@ -12,8 +12,9 @@ type Props = {
   textToCopy?: string
   children?: ReactNode
   serviceId: string
+  hasError?: boolean
 }
-export const ServiceListItem = ({ service, textToCopy, children, serviceId }: Props) => {
+export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasError }: Props) => {
   const { title, price, badges } = service
 
   const serviceStore = useServicesStore((state) => state.services.find((service) => service.id === serviceId))
@@ -44,7 +45,7 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId }: Pr
       </Text>
       <Badges badges={badges} />
       {children}
-      <CopyText textToCopy={textToCopy} />
+      <CopyText hasError={hasError} textToCopy={textToCopy} />
       <PriceDisplay price={price} />
       <DeleteServiceButton onDelete={deleteServiceButtonHandler} />
     </Flex>

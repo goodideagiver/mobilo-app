@@ -1,6 +1,7 @@
 import { TopLevelSettings, VehicleWeight } from './servicesTypes'
 
 import create from 'zustand'
+import { calculateDriveToClient } from './helpers'
 
 const defaultSettings: TopLevelSettings = {
   distanceAfterRepair: 0,
@@ -89,6 +90,12 @@ const defaultServices: SingleService[] = [
 interface ServiceState {
   settings: TopLevelSettings
   services: SingleService[]
+  driveToPlace: {
+    rate: number
+    hours: number
+    setRate: (rate: number) => void
+    setHours: (hours: number) => void
+  }
   setDistanceBeforeRepair: (distance: number) => void
   setDistanceAfterRepair: (distance: number) => void
   setVehicleWeight: (weight: TopLevelSettings['vehicleWeight']) => void
@@ -105,6 +112,38 @@ const initialState = {
 
 export const useServicesStore = create<ServiceState>((set) => ({
   ...initialState,
+  driveToPlace: {
+    rate: 0,
+    hours: 0,
+    setRate: (rate) =>
+      set((state) => ({
+        ...state,
+        services: state.services.map((service) => {
+          if (service.id === '3') {
+            return {
+              ...service,
+              price: calculateDriveToClient(rate, state.driveToPlace.hours, state.settings.distanceBeforeRepair),
+            }
+          }
+          return service
+        }),
+        driveToPlace: { ...state.driveToPlace, rate },
+      })),
+    setHours: (hours) =>
+      set((state) => ({
+        ...state,
+        services: state.services.map((service) => {
+          if (service.id === '3') {
+            return {
+              ...service,
+              price: calculateDriveToClient(state.driveToPlace.rate, hours, state.settings.distanceBeforeRepair),
+            }
+          }
+          return service
+        }),
+        driveToPlace: { ...state.driveToPlace, hours },
+      })),
+  },
   setDistanceBeforeRepair: (distance) =>
     set((state) => ({
       ...state,
@@ -113,6 +152,12 @@ export const useServicesStore = create<ServiceState>((set) => ({
           return {
             ...service,
             price: distance * rate[state.settings.vehicleWeight] + handlingFee[state.settings.vehicleWeight],
+          }
+        }
+        if (service.id === '3') {
+          return {
+            ...service,
+            price: calculateDriveToClient(state.driveToPlace.rate, state.driveToPlace.hours, distance),
           }
         }
         return service
