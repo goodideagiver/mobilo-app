@@ -1,6 +1,7 @@
 import { DeleteIcon, HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Circle,
   Flex,
   FormControl,
   FormHelperText,
@@ -15,6 +16,7 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
+  Text,
   Tooltip,
 } from '@chakra-ui/react'
 
@@ -91,7 +93,16 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       <Box h="100%" rounded="2xl" p="4" shadow="2xl" border="4px" borderColor="green.700">
         <Stat h="100%">
           <Stack>
-            <StatLabel>Razem</StatLabel>
+            <StatLabel>
+              <HStack>
+                {!!(activeServices.length > 0) && (
+                  <Circle size="30px" bg="green.700">
+                    {activeServices.length}
+                  </Circle>
+                )}
+                <Text>Razem</Text>
+              </HStack>
+            </StatLabel>
             <StatNumber>{numberToOutputCurrencyString(activeServiceSummary)}</StatNumber>
             <StatHelpText>Całkowita wartość usług</StatHelpText>
           </Stack>

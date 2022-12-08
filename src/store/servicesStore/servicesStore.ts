@@ -18,6 +18,7 @@ export type SingleService = {
   title: string
   textSummary: string
   active: boolean
+  beforeRepair?: boolean
 }
 
 type Fee = {
@@ -44,6 +45,7 @@ const defaultServices: SingleService[] = [
       rate[defaultSettings.vehicleWeight] * defaultSettings.distanceBeforeRepair,
     textSummary: '',
     active: false,
+    beforeRepair: true,
   },
   {
     title: 'Auto zastępcze',
@@ -52,6 +54,7 @@ const defaultServices: SingleService[] = [
     price: 0,
     textSummary: '',
     active: false,
+    beforeRepair: true,
   },
   {
     title: 'Dojazd do miejsca awarii',
@@ -60,6 +63,7 @@ const defaultServices: SingleService[] = [
     price: 0,
     textSummary: '',
     active: false,
+    beforeRepair: true,
   },
   {
     title: 'Bonus za naprawę na miejscu',
