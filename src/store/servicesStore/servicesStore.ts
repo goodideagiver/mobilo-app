@@ -1,7 +1,7 @@
 import { TopLevelSettings, VehicleWeight } from './servicesTypes'
 
 import create from 'zustand'
-import { calculateDriveToClient } from './helpers'
+import { calculateDriveToClient, calculateTowing, setTextSummary } from './helpers'
 
 const defaultSettings: TopLevelSettings = {
   distanceAfterRepair: 0,
@@ -11,7 +11,7 @@ const defaultSettings: TopLevelSettings = {
 
 export type MixGroup = 1 | 2 | 3 | null
 
-type SingleService = {
+export type SingleService = {
   id: string
   mixGroup: MixGroup
   price: number
@@ -90,6 +90,7 @@ const defaultServices: SingleService[] = [
 interface ServiceState {
   settings: TopLevelSettings
   services: SingleService[]
+  euroCourse: number
   driveToPlace: {
     rate: number
     hours: number
@@ -108,6 +109,7 @@ interface ServiceState {
 const initialState = {
   settings: defaultSettings,
   services: defaultServices,
+  euroCourse: 4.5,
 }
 
 export const useServicesStore = create<ServiceState>((set) => ({
@@ -151,7 +153,7 @@ export const useServicesStore = create<ServiceState>((set) => ({
         if (service.id === '1') {
           return {
             ...service,
-            price: distance * rate[state.settings.vehicleWeight] + handlingFee[state.settings.vehicleWeight],
+            price: calculateTowing(distance, state.settings.vehicleWeight),
           }
         }
         if (service.id === '3') {
@@ -195,7 +197,7 @@ export const useServicesStore = create<ServiceState>((set) => ({
         if (service.id === '1') {
           return {
             ...service,
-            price: state.settings.distanceBeforeRepair * rate[weight] + handlingFee[weight],
+            price: calculateTowing(state.settings.distanceBeforeRepair, weight),
           }
         }
         return service
@@ -233,13 +235,6 @@ export const useServicesStore = create<ServiceState>((set) => ({
   setServiceTextSummary: (id, textSummary) =>
     set((state) => ({
       ...state,
-      services: state.services.map((service) =>
-        service.id === id
-          ? {
-              ...service,
-              textSummary,
-            }
-          : service,
-      ),
+      services: setTextSummary(state.services, id, textSummary),
     })),
 }))
