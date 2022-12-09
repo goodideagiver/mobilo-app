@@ -24,9 +24,7 @@ export const Towing = ({ serviceId }: Props) => {
   OPŁATA ZA ODLEGŁOŚĆ = ${rateFormatted}/km NETTO X ${distanceBeforeRepair} km = ${numberToOutputCurrencyString(
     rate[vehicleWeight] * distanceBeforeRepair,
   )}
-  RAZEM = ${numberToOutputCurrencyString(
-    rate[vehicleWeight] * distanceBeforeRepair + handlingFee[vehicleWeight],
-  )} NETTO`
+  RAZEM = ${numberToOutputCurrencyString(towingServiceStore.price)} NETTO`
 
   const serviceData: Service = {
     title: 'Holowanie',
