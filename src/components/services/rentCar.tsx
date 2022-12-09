@@ -40,6 +40,8 @@ export const RentCar = () => {
 
     if (isFinite(days) && carPrice && isFinite(carPrice)) {
       setPrice('2', days * carPrice)
+    } else {
+      setPrice('2', 0)
     }
   }
 
@@ -47,6 +49,7 @@ export const RentCar = () => {
 
   return (
     <ServiceListItem
+      hasError={!shouldDisplayText}
       serviceId="2"
       service={{
         active: true,
