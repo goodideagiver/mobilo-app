@@ -40,6 +40,7 @@ export const DriveToClient = () => {
 
   return (
     <ServiceListItem
+      cantBeMixedWith={['2', '1', '5']}
       hasError={isInvalid}
       serviceId="3"
       service={{

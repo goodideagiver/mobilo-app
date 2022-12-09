@@ -36,5 +36,7 @@ export const Towing = ({ serviceId }: Props) => {
     preventCombineGroup: null,
   }
 
-  return <ServiceListItem serviceId={serviceId} service={serviceData} textToCopy={textToCopy} />
+  return (
+    <ServiceListItem cantBeMixedWith={['3', '4']} serviceId={serviceId} service={serviceData} textToCopy={textToCopy} />
+  )
 }

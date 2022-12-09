@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import { useCantBeMixedWith } from '../../../hooks/useCantBeMixedWithOtherService'
 import { useServicesStore } from '../../../store/servicesStore/servicesStore'
 import { Service } from '../../../store/servicesStore/servicesTypes'
 import { Badges } from './badges'
@@ -13,8 +14,9 @@ type Props = {
   children?: ReactNode
   serviceId: string
   hasError?: boolean
+  cantBeMixedWith?: string[]
 }
-export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasError }: Props) => {
+export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasError, cantBeMixedWith }: Props) => {
   const { title, price, badges } = service
 
   const serviceStore = useServicesStore((state) => state.services.find((service) => service.id === serviceId))
@@ -29,6 +31,10 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
     toggleService(serviceId)
   }
 
+  const hasMixingErrors = useCantBeMixedWith(cantBeMixedWith)
+
+  const bgColor = hasMixingErrors ? 'red.900' : 'transparent'
+
   return (
     <Flex
       gap="4"
@@ -39,12 +45,13 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
       align="center"
       justify="space-between"
       w="100%"
+      bg={bgColor}
     >
       <Text fontWeight="bold" flex="1 0 100px">
         {title}
       </Text>
       {children}
-      <Badges badges={badges} />
+      <Badges hasIncompatibleServices={hasMixingErrors} badges={badges} />
       <CopyText hasError={hasError} textToCopy={textToCopy} />
       <PriceDisplay price={price} />
       <DeleteServiceButton onDelete={deleteServiceButtonHandler} />

@@ -10,6 +10,7 @@ export const RepairOnSiteBonus = () => {
 
   return (
     <ServiceListItem
+      cantBeMixedWith={['5', '1', '2']}
       serviceId="4"
       service={{
         active: true,
