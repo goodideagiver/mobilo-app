@@ -1,7 +1,7 @@
 import { useServicesStore } from '../store/servicesStore/servicesStore'
 
 export const useCantBeMixedWith = (id?: string[]) => {
-  if (!id) return false
+  if (!id) return { hasErrors: false }
 
   const services = useServicesStore((state) => state.services)
 
@@ -9,5 +9,5 @@ export const useCantBeMixedWith = (id?: string[]) => {
 
   const cantBeMixedWith = activeServices.filter((service) => id.includes(service.id))
 
-  return cantBeMixedWith.length > 0
+  return { hasErrors: cantBeMixedWith.length > 0, conflictingServices: cantBeMixedWith }
 }

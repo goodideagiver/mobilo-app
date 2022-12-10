@@ -31,9 +31,13 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
     toggleService(serviceId)
   }
 
-  const hasMixingErrors = useCantBeMixedWith(cantBeMixedWith)
+  const { hasErrors, conflictingServices } = useCantBeMixedWith(cantBeMixedWith)
 
-  const bgColor = hasMixingErrors ? 'red.900' : 'transparent'
+  const conflictingServicesText = `Ta usługa nie może być łączona z: ${conflictingServices
+    ?.map((service) => service.title)
+    .join(', ')}`
+
+  const bgColor = hasErrors ? 'red.900' : 'transparent'
 
   return (
     <Flex
@@ -51,8 +55,8 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
         {title}
       </Text>
       {children}
-      <Badges hasIncompatibleServices={hasMixingErrors} badges={badges} />
-      <CopyText hasError={hasError} textToCopy={textToCopy} />
+      <Badges hasIncompatibleServices={hasErrors} badges={badges} />
+      <CopyText hasError={hasError || hasErrors} textToCopy={hasErrors ? conflictingServicesText : textToCopy} />
       <PriceDisplay price={price} />
       <DeleteServiceButton onDelete={deleteServiceButtonHandler} />
     </Flex>

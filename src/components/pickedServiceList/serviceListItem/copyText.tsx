@@ -11,7 +11,6 @@ type Props = {
 
 const textErrorStyle = {
   fontStyle: 'italic',
-  color: 'red.700',
 }
 
 const wrapperErrorStyle = {
@@ -57,11 +56,11 @@ export const CopyText = ({ textToCopy, hasError }: Props) => {
     <HStack
       justifyContent={'space-between'}
       flex="0 0 350px"
-      {...errorStyle}
       bg="chakra-body-bg"
       rounded="md"
       shadow="md"
       p="2"
+      {...errorStyle}
     >
       <Text {...textStyle} fontSize={'xs'} fontFamily="mono" maxH="4em" overflow={'auto'}>
         {replacePolishChars(textToCopy)}
