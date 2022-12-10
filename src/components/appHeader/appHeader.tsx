@@ -1,6 +1,7 @@
 import { DeleteIcon, HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Circle,
   Flex,
   FormControl,
   FormHelperText,
@@ -15,13 +16,43 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
+  Text,
   Tooltip,
 } from '@chakra-ui/react'
+
+import { ChangeEventHandler } from 'react'
+import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
+import { useServicesStore } from '../../store/servicesStore/servicesStore'
 
 type Props = {
   drawerOpenHandler: () => void
 }
 export const AppHeader = ({ drawerOpenHandler }: Props) => {
+  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, resetServices, services } =
+    useServicesStore((state) => state)
+
+  const distanceInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setDistanceBeforeRepair(Number(event.target.value))
+  }
+
+  const distanceAfterRepairInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setDistanceAfterRepair(Number(event.target.value))
+  }
+
+  const resetButtonHandler = () => resetServices()
+
+  const vehicleWeightInputHandler = (weight: string) => {
+    if (weight === '1') {
+      setVehicleWeight('3.5t-5.5t')
+    } else {
+      setVehicleWeight('below 3.5t')
+    }
+  }
+
+  const activeServices = services.filter((service) => service.active)
+
+  const activeServiceSummary = activeServices.reduce((prev, curr) => prev + curr.price, 0)
+
   return (
     <Flex w="100%" align="center" justify="space-between" gap="2">
       <Tooltip hasArrow label="Menu z usługami">
@@ -33,18 +64,23 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       <HStack h="100%" rounded="2xl" p="4" shadow="lg" border="4px" borderColor="gray.700" align="baseline">
         <FormControl>
           <FormLabel>Odległość</FormLabel>
-          <Input type="number" value={100} onChange={() => console.log('siem')} />
+          <Input type="number" min="0" value={settings.distanceBeforeRepair} onChange={distanceInputHandler} />
           <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
         </FormControl>
         <FormControl>
           <FormLabel>Odległość odwiezienia</FormLabel>
-          <Input type="number" value={100} onChange={() => console.log('siem')} />
+          <Input
+            type="number"
+            min="0"
+            value={settings.distanceAfterRepair}
+            onChange={distanceAfterRepairInputHandler}
+          />
           <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
         </FormControl>
         <FormControl>
           <FormLabel as="legend">Masa pojazdu</FormLabel>
 
-          <RadioGroup defaultValue="0">
+          <RadioGroup onChange={vehicleWeightInputHandler} defaultValue="0">
             <HStack spacing="24px">
               <Radio value="0">Poniżej 3.5t</Radio>
               <Radio value="1">3.5t - 5.5t</Radio>
@@ -57,8 +93,17 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       <Box h="100%" rounded="2xl" p="4" shadow="2xl" border="4px" borderColor="green.700">
         <Stat h="100%">
           <Stack>
-            <StatLabel>Razem</StatLabel>
-            <StatNumber>1000,65 zł</StatNumber>
+            <StatLabel>
+              <HStack>
+                {!!(activeServices.length > 0) && (
+                  <Circle size="30px" bg="green.700">
+                    {activeServices.length}
+                  </Circle>
+                )}
+                <Text>Razem</Text>
+              </HStack>
+            </StatLabel>
+            <StatNumber>{numberToOutputCurrencyString(activeServiceSummary)}</StatNumber>
             <StatHelpText>Całkowita wartość usług</StatHelpText>
           </Stack>
         </Stat>
@@ -66,7 +111,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
 
       <HStack>
         <Tooltip hasArrow label="Resetuj wszystko">
-          <IconButton aria-label="Resetuj wszystko">
+          <IconButton onClick={resetButtonHandler} aria-label="Resetuj wszystko">
             <DeleteIcon />
           </IconButton>
         </Tooltip>

@@ -1,7 +1,9 @@
+export type VehicleWeight = 'below 3.5t' | '3.5t-5.5t'
+
 export type TopLevelSettings = {
-  distanceFromBreakLocation: number
-  distanceTowBack: number
-  vehicleWeight: 'below 3.5t' | '3.5t-5.5t'
+  distanceBeforeRepair: number
+  distanceAfterRepair: number
+  vehicleWeight: VehicleWeight
 }
 
 type ServiceType = 'before repair' | 'after repair'
@@ -11,7 +13,7 @@ export type ServiceBadge = 'ryczałt' | 'po naprawie' | 'przed naprawą'
 export interface Service {
   title: string
   active: boolean
-  preventCombineGroup: string
+  preventCombineGroup: string | null
   serviceType: ServiceType
   badges: ServiceBadge[]
   serviceSummaryText?: string
