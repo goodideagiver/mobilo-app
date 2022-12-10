@@ -50,8 +50,6 @@ export const CopyText = ({ textToCopy, hasError }: Props) => {
 
   const textStyle = hasError ? textErrorStyle : {}
 
-  console.log({ normal: textToCopy, replaced: replacePolishChars(textToCopy) })
-
   return (
     <HStack
       justifyContent={'space-between'}
