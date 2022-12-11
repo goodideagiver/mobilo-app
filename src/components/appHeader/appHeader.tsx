@@ -8,7 +8,6 @@ import {
   FormLabel,
   HStack,
   IconButton,
-  Input,
   Radio,
   RadioGroup,
   Stack,
@@ -23,6 +22,7 @@ import {
 import { ChangeEventHandler } from 'react'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
+import { HeaderNumberInput } from './headerNumberInput'
 
 type Props = {
   drawerOpenHandler: () => void
@@ -62,22 +62,19 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       </Tooltip>
 
       <HStack h="100%" rounded="2xl" p="4" shadow="lg" border="4px" borderColor="gray.700" align="baseline">
-        <FormControl>
-          <FormLabel>Odległość</FormLabel>
-          <Input type="number" min="0" value={settings.distanceBeforeRepair} onChange={distanceInputHandler} />
-          <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
-        </FormControl>
-        <FormControl>
-          <FormLabel>Odległość odwiezienia</FormLabel>
-          <Input
-            type="number"
-            min="0"
-            value={settings.distanceAfterRepair}
-            onChange={distanceAfterRepairInputHandler}
-          />
-          <FormHelperText>Odległość w jedną stronę (km)</FormHelperText>
-        </FormControl>
-        <FormControl>
+        <HeaderNumberInput
+          inputHelperText="Odległość w jedną stronę (km)"
+          inputTitle="Odległość"
+          value={settings.distanceBeforeRepair}
+          onChange={distanceInputHandler}
+        />
+        <HeaderNumberInput
+          inputHelperText="Odległość w jedną stronę (km)"
+          inputTitle="Odległość odwiezienia"
+          value={settings.distanceAfterRepair}
+          onChange={distanceAfterRepairInputHandler}
+        />
+        <FormControl h="100%" display="flex" flexDir="column" justifyContent="space-between">
           <FormLabel as="legend">Masa pojazdu</FormLabel>
 
           <RadioGroup onChange={vehicleWeightInputHandler} defaultValue="0">
