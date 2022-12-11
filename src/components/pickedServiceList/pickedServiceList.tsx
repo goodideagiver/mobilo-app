@@ -14,7 +14,7 @@ export const PickedServiceList = () => {
   const services = (
     <>
       <DocumentationBonus />
-      <Towing serviceId="1" />
+      <Towing serviceId='1' />
       <RentCar />
       <DriveToClient />
       <RepairOnSiteBonus />
@@ -23,8 +23,8 @@ export const PickedServiceList = () => {
   )
 
   const noPickedServiceMessage = (
-    <Center h="100%">
-      <Text fontSize="2xl" fontWeight="bold" fontStyle="italic">
+    <Center h='100%'>
+      <Text fontSize='2xl' fontWeight='bold' fontStyle='italic'>
         Nie wybrano jeszcze żadnej usługi
       </Text>
     </Center>
@@ -33,15 +33,15 @@ export const PickedServiceList = () => {
   return (
     <Stack
       opacity={hasServicesToDisplay ? '1' : '0.5'}
-      border="2px"
-      borderColor="gray.600"
-      overflowY="auto"
-      shadow="dark-lg"
-      rounded="xl"
-      transition="opacity 0.3s ease-in-out"
-      flex="1"
-      h="100%"
-      bg="chakra-subtle-bg"
+      border='2px'
+      borderColor='gray.600'
+      overflowY='auto'
+      shadow='dark-lg'
+      rounded='xl'
+      transition='opacity 0.3s ease-in-out'
+      flex='1'
+      h='100%'
+      bg='chakra-subtle-bg'
     >
       {hasServicesToDisplay ? services : noPickedServiceMessage}
     </Stack>

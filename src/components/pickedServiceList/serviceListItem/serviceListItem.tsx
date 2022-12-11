@@ -41,17 +41,17 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
 
   return (
     <Flex
-      gap="4"
-      borderBottom="2px"
-      borderColor="gray.600"
-      p="2"
-      px="4"
-      align="center"
-      justify="space-between"
-      w="100%"
+      gap='4'
+      borderBottom='2px'
+      borderColor='gray.600'
+      p='2'
+      px='4'
+      align='center'
+      justify='space-between'
+      w='100%'
       bg={bgColor}
     >
-      <Text fontWeight="bold" flex="1 0 100px">
+      <Text fontWeight='bold' flex='1 0 100px'>
         {title}
       </Text>
       {children}

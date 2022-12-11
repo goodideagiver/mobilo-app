@@ -53,18 +53,18 @@ export const CopyText = ({ textToCopy, hasError }: Props) => {
   return (
     <HStack
       justifyContent={'space-between'}
-      flex="0 0 350px"
-      bg="chakra-body-bg"
-      rounded="md"
-      shadow="md"
-      p="2"
+      flex='0 0 350px'
+      bg='chakra-body-bg'
+      rounded='md'
+      shadow='md'
+      p='2'
       {...errorStyle}
     >
-      <Text {...textStyle} fontSize={'xs'} fontFamily="mono" maxH="4em" overflow={'auto'}>
+      <Text {...textStyle} fontSize={'xs'} fontFamily='mono' maxH='4em' overflow={'auto'}>
         {replacePolishChars(textToCopy)}
       </Text>
       <CopyTooltip hasCopied={hasCopied}>
-        <IconButton onClick={onCopy} aria-label="Skopiuj do schowka">
+        <IconButton onClick={onCopy} aria-label='Skopiuj do schowka'>
           {buttonIcon}
         </IconButton>
       </CopyTooltip>

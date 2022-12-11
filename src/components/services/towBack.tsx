@@ -12,7 +12,7 @@ export const TowBack = () => {
   if (!(distance < 50))
     return (
       <ServiceListItem
-        serviceId="5"
+        serviceId='5'
         service={{
           active: true,
           badges: ['po naprawie'],
@@ -30,7 +30,7 @@ RAZEM = 0,00 ZL NETTO
 
   return (
     <ServiceListItem
-      serviceId="5"
+      serviceId='5'
       service={{
         active: true,
         badges: ['po naprawie', 'ryczałt'],
@@ -39,8 +39,8 @@ RAZEM = 0,00 ZL NETTO
         preventCombineGroup: null,
         serviceType: 'after repair',
       }}
-      textToCopy="Odwiezienie pojazdu klienta do 50 km 300 zł netto
-"
+      textToCopy='Odwiezienie pojazdu klienta do 50 km 300 zł netto
+'
     />
   )
 }

@@ -8,12 +8,12 @@ type Props = {
 
 export const Badges = ({ badges, hasIncompatibleServices }: Props) => {
   const badgesToDisplay = hasIncompatibleServices ? (
-    <Badge colorScheme="purple" variant="outline">
+    <Badge colorScheme='purple' variant='outline'>
       Niekompatybilna
     </Badge>
   ) : (
     badges.map((badge) => {
-      return <Badge colorScheme="green">{badge}</Badge>
+      return <Badge colorScheme='green'>{badge}</Badge>
     })
   )
 

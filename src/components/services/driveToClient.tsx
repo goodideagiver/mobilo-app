@@ -42,7 +42,7 @@ export const DriveToClient = () => {
     <ServiceListItem
       cantBeMixedWith={['2', '1', '5']}
       hasError={isInvalid}
-      serviceId="3"
+      serviceId='3'
       service={{
         active: true,
         badges: ['przed naprawą'],
@@ -56,11 +56,11 @@ export const DriveToClient = () => {
       <HStack>
         <FormControl>
           <FormLabel>Roboczogodziny</FormLabel>
-          <Input onChange={hoursInputHandler} value={hours} min="0" placeholder="RBH" type="number" />
+          <Input onChange={hoursInputHandler} value={hours} min='0' placeholder='RBH' type='number' />
         </FormControl>
         <FormControl>
           <FormLabel>Stawka</FormLabel>
-          <Input onChange={rateInputHandler} value={rate} min="0" placeholder="stawka" type="number" />
+          <Input onChange={rateInputHandler} value={rate} min='0' placeholder='stawka' type='number' />
         </FormControl>
       </HStack>
     </ServiceListItem>

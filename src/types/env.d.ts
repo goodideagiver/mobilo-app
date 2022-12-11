@@ -1,7 +1,7 @@
 interface ImportMetaEnv {
-  readonly VITE_TEST: string;
+  readonly VITE_TEST: string
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnv
 }

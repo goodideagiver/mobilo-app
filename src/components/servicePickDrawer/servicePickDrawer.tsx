@@ -19,7 +19,7 @@ type Props = {
 
 const CategoryWrapper = ({ children, text }: { children: ReactNode; text: string }) => {
   return (
-    <Stack bg="gray.800" shadow={'lg'} w="100%" p="2" rounded={'md'}>
+    <Stack bg='gray.800' shadow={'lg'} w='100%' p='2' rounded={'md'}>
       <Text>{text}</Text>
       {children}
     </Stack>
@@ -32,7 +32,7 @@ type ServiceButtonProps = {
 }
 
 const ServiceButton = ({ active, children, onClick }: ServiceButtonProps) => (
-  <Button border="4px" borderColor={active ? 'green.500' : 'transparent'} onClick={onClick} width="100%">
+  <Button border='4px' borderColor={active ? 'green.500' : 'transparent'} onClick={onClick} width='100%'>
     {children}
   </Button>
 )
@@ -54,15 +54,15 @@ export const ServicePickDrawer = ({ isOpen, drawerCloseHandler }: Props) => {
   )
 
   return (
-    <Drawer isOpen={isOpen} placement="left" onClose={drawerCloseHandler}>
+    <Drawer isOpen={isOpen} placement='left' onClose={drawerCloseHandler}>
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader>Wybierz usługę mobilności</DrawerHeader>
 
-        <DrawerBody p="2">
-          <Stack gap="4" align={'center'} h="100%">
-            <CategoryWrapper text="Przed naprawą">
+        <DrawerBody p='2'>
+          <Stack gap='4' align={'center'} h='100%'>
+            <CategoryWrapper text='Przed naprawą'>
               {servicesBeforeRepair.map((option) => {
                 return (
                   <ServiceButton active={option.active} onClick={() => toggleService(option.id)} key={option.id}>
@@ -71,7 +71,7 @@ export const ServicePickDrawer = ({ isOpen, drawerCloseHandler }: Props) => {
                 )
               })}
             </CategoryWrapper>
-            <CategoryWrapper text="Po naprawie">
+            <CategoryWrapper text='Po naprawie'>
               {servicesAfterRepair.map((option) => {
                 return (
                   <ServiceButton active={option.active} onClick={() => toggleService(option.id)} key={option.id}>

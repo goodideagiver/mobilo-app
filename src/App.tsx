@@ -9,7 +9,7 @@ const App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
-    <Stack overflow="hidden" padding="4" gap="16px" h="100vh">
+    <Stack overflow='hidden' padding='4' gap='16px' h='100vh'>
       <AppHeader drawerOpenHandler={() => setDrawerOpen(true)} />
       <PickedServiceList />
       <ServicePickDrawer isOpen={drawerOpen} drawerCloseHandler={() => setDrawerOpen(false)} />

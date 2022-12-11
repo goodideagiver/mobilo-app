@@ -54,46 +54,46 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
   const activeServiceSummary = activeServices.reduce((prev, curr) => prev + curr.price, 0)
 
   return (
-    <Flex w="100%" align="center" justify="space-between" gap="2">
-      <Tooltip hasArrow label="Menu z usługami">
-        <IconButton aria-label="Pokaż usługi" onClick={drawerOpenHandler}>
+    <Flex w='100%' align='center' justify='space-between' gap='2'>
+      <Tooltip hasArrow label='Menu z usługami'>
+        <IconButton aria-label='Pokaż usługi' onClick={drawerOpenHandler}>
           <HamburgerIcon />
         </IconButton>
       </Tooltip>
 
-      <HStack h="100%" rounded="2xl" p="4" shadow="lg" border="4px" borderColor="gray.700" align="baseline">
+      <HStack h='100%' rounded='2xl' p='4' shadow='lg' border='4px' borderColor='gray.700' align='baseline'>
         <HeaderNumberInput
-          inputHelperText="Odległość w jedną stronę (km)"
-          inputTitle="Odległość"
+          inputHelperText='Odległość w jedną stronę (km)'
+          inputTitle='Odległość'
           value={settings.distanceBeforeRepair}
           onChange={distanceInputHandler}
         />
         <HeaderNumberInput
-          inputHelperText="Odległość w jedną stronę (km)"
-          inputTitle="Odległość odwiezienia"
+          inputHelperText='Odległość w jedną stronę (km)'
+          inputTitle='Odległość odwiezienia'
           value={settings.distanceAfterRepair}
           onChange={distanceAfterRepairInputHandler}
         />
-        <FormControl h="100%" display="flex" flexDir="column" justifyContent="space-between">
-          <FormLabel as="legend">Masa pojazdu</FormLabel>
+        <FormControl h='100%' display='flex' flexDir='column' justifyContent='space-between'>
+          <FormLabel as='legend'>Masa pojazdu</FormLabel>
 
-          <RadioGroup onChange={vehicleWeightInputHandler} defaultValue="0">
-            <HStack spacing="24px">
-              <Radio value="0">Poniżej 3.5t</Radio>
-              <Radio value="1">3.5t - 5.5t</Radio>
+          <RadioGroup onChange={vehicleWeightInputHandler} defaultValue='0'>
+            <HStack spacing='24px'>
+              <Radio value='0'>Poniżej 3.5t</Radio>
+              <Radio value='1'>3.5t - 5.5t</Radio>
             </HStack>
           </RadioGroup>
           <FormHelperText>Do rozliczania holowania</FormHelperText>
         </FormControl>
       </HStack>
 
-      <Box h="100%" rounded="2xl" p="4" shadow="2xl" border="4px" borderColor="green.700">
-        <Stat h="100%">
+      <Box h='100%' rounded='2xl' p='4' shadow='2xl' border='4px' borderColor='green.700'>
+        <Stat h='100%'>
           <Stack>
             <StatLabel>
               <HStack>
                 {!!(activeServices.length > 0) && (
-                  <Circle size="30px" bg="green.700">
+                  <Circle size='30px' bg='green.700'>
                     {activeServices.length}
                   </Circle>
                 )}
@@ -107,13 +107,13 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
       </Box>
 
       <HStack>
-        <Tooltip hasArrow label="Resetuj wszystko">
-          <IconButton onClick={resetButtonHandler} aria-label="Resetuj wszystko">
+        <Tooltip hasArrow label='Resetuj wszystko'>
+          <IconButton onClick={resetButtonHandler} aria-label='Resetuj wszystko'>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip hasArrow label="Otwórz ustawienia">
-          <IconButton aria-label="Otwórz ustawienia">
+        <Tooltip hasArrow label='Otwórz ustawienia'>
+          <IconButton aria-label='Otwórz ustawienia'>
             <SettingsIcon />
           </IconButton>
         </Tooltip>

@@ -20,6 +20,6 @@ export const DocumentationBonus = () => {
   }
 
   return (
-    <ServiceListItem serviceId="6" service={serviceData} textToCopy="Ryczałt 100 zł za sporządzenie dokumentacji" />
+    <ServiceListItem serviceId='6' service={serviceData} textToCopy='Ryczałt 100 zł za sporządzenie dokumentacji' />
   )
 }
