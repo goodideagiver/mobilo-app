@@ -6,16 +6,14 @@ import { DrawerButton } from './DrawerButton'
 import { HeaderNumberInput } from './headerNumberInput'
 import { MainHeaderButtons } from './MainHeaderButtons'
 import { ServicesSummary } from './ServicesSummary'
-import { VehicleMassToggle } from './VehicleMassToggle'
+import { VehicleMassToggle } from './VehicleMassToggle/VehicleMassToggle'
 
 type Props = {
   drawerOpenHandler: () => void
 }
 
 export const AppHeader = ({ drawerOpenHandler }: Props) => {
-  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, services } = useServicesStore(
-    (state) => state,
-  )
+  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, services } = useServicesStore((state) => state)
 
   const distanceInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDistanceBeforeRepair(Number(event.target.value))
@@ -23,14 +21,6 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
 
   const distanceAfterRepairInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDistanceAfterRepair(Number(event.target.value))
-  }
-
-  const vehicleWeightInputHandler = (weight: string) => {
-    if (weight === '1') {
-      setVehicleWeight('3.5t-5.5t')
-    } else {
-      setVehicleWeight('below 3.5t')
-    }
   }
 
   const activeServices = services.filter((service) => service.active)
@@ -54,7 +44,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
           value={settings.distanceAfterRepair}
           onChange={distanceAfterRepairInputHandler}
         />
-        <VehicleMassToggle vehicleWeightInputHandler={vehicleWeightInputHandler} />
+        <VehicleMassToggle />
       </HStack>
       <ServicesSummary activeServices={activeServices} activeServiceSummary={activeServiceSummary} />
       <MainHeaderButtons />
