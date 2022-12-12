@@ -1,35 +1,21 @@
-import { DeleteIcon, HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Circle,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  HStack,
-  IconButton,
-  Radio,
-  RadioGroup,
-  Stack,
-  Stat,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-  Text,
-  Tooltip,
-} from '@chakra-ui/react'
+import { Flex, HStack } from '@chakra-ui/react'
 
 import { ChangeEventHandler } from 'react'
-import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
+import { DrawerButton } from './DrawerButton'
 import { HeaderNumberInput } from './headerNumberInput'
+import { MainHeaderButtons } from './MainHeaderButtons'
+import { ServicesSummary } from './ServicesSummary'
+import { VehicleMassToggle } from './VehicleMassToggle'
 
 type Props = {
   drawerOpenHandler: () => void
 }
+
 export const AppHeader = ({ drawerOpenHandler }: Props) => {
-  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, resetServices, services } =
-    useServicesStore((state) => state)
+  const { setDistanceAfterRepair, setDistanceBeforeRepair, settings, setVehicleWeight, services } = useServicesStore(
+    (state) => state,
+  )
 
   const distanceInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDistanceBeforeRepair(Number(event.target.value))
@@ -38,8 +24,6 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
   const distanceAfterRepairInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setDistanceAfterRepair(Number(event.target.value))
   }
-
-  const resetButtonHandler = () => resetServices()
 
   const vehicleWeightInputHandler = (weight: string) => {
     if (weight === '1') {
@@ -55,11 +39,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
 
   return (
     <Flex w='100%' align='center' justify='space-between' gap='2'>
-      <Tooltip hasArrow label='Menu z usługami'>
-        <IconButton aria-label='Pokaż usługi' onClick={drawerOpenHandler}>
-          <HamburgerIcon />
-        </IconButton>
-      </Tooltip>
+      <DrawerButton drawerOpenHandler={drawerOpenHandler} />
 
       <HStack h='100%' rounded='2xl' p='4' shadow='lg' border='4px' borderColor='gray.700' align='baseline'>
         <HeaderNumberInput
@@ -74,50 +54,10 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
           value={settings.distanceAfterRepair}
           onChange={distanceAfterRepairInputHandler}
         />
-        <FormControl h='100%' display='flex' flexDir='column' justifyContent='space-between'>
-          <FormLabel as='legend'>Masa pojazdu</FormLabel>
-
-          <RadioGroup onChange={vehicleWeightInputHandler} defaultValue='0'>
-            <HStack spacing='24px'>
-              <Radio value='0'>Poniżej 3.5t</Radio>
-              <Radio value='1'>3.5t - 5.5t</Radio>
-            </HStack>
-          </RadioGroup>
-          <FormHelperText>Do rozliczania holowania</FormHelperText>
-        </FormControl>
+        <VehicleMassToggle vehicleWeightInputHandler={vehicleWeightInputHandler} />
       </HStack>
-
-      <Box h='100%' rounded='2xl' p='4' shadow='2xl' border='4px' borderColor='green.700'>
-        <Stat h='100%'>
-          <Stack>
-            <StatLabel>
-              <HStack>
-                {!!(activeServices.length > 0) && (
-                  <Circle size='30px' bg='green.700'>
-                    {activeServices.length}
-                  </Circle>
-                )}
-                <Text>Razem</Text>
-              </HStack>
-            </StatLabel>
-            <StatNumber>{numberToOutputCurrencyString(activeServiceSummary)}</StatNumber>
-            <StatHelpText>Całkowita wartość usług</StatHelpText>
-          </Stack>
-        </Stat>
-      </Box>
-
-      <HStack>
-        <Tooltip hasArrow label='Resetuj wszystko'>
-          <IconButton onClick={resetButtonHandler} aria-label='Resetuj wszystko'>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip hasArrow label='Otwórz ustawienia'>
-          <IconButton aria-label='Otwórz ustawienia'>
-            <SettingsIcon />
-          </IconButton>
-        </Tooltip>
-      </HStack>
+      <ServicesSummary activeServices={activeServices} activeServiceSummary={activeServiceSummary} />
+      <MainHeaderButtons />
     </Flex>
   )
 }
