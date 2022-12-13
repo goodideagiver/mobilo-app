@@ -1,6 +1,6 @@
 import { useClipboard } from '@chakra-ui/react'
+import { replacePolishChars } from '../replacePolishChars'
 import { textErrorStyle, wrapperErrorStyle } from './copyText.styles'
-import { replacePolishChars } from './replacePolishChars'
 
 export const useCopyText = (textToCopy: string, hasError?: boolean) => {
   const { onCopy, hasCopied } = useClipboard(replacePolishChars(textToCopy))

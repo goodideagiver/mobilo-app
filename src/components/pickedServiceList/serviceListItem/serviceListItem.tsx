@@ -4,7 +4,7 @@ import { useCantBeMixedWith } from '../../../hooks/useCantBeMixedWithOtherServic
 import { useServicesStore } from '../../../store/servicesStore/servicesStore'
 import { Service } from '../../../store/servicesStore/servicesTypes'
 import { Badges } from './badges'
-import { CopyText } from './copyText'
+import { CopyText } from './copyText/copyText'
 import { DeleteServiceButton } from './deleteServiceButton'
 import { PriceDisplay } from './priceDisplay'
 

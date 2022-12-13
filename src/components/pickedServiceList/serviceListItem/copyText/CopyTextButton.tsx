@@ -1,6 +1,6 @@
 import { CheckIcon, CopyIcon } from '@chakra-ui/icons'
 import { IconButton } from '@chakra-ui/react'
-import { CopyTooltip } from '../../ui/copyTooltip'
+import { CopyTooltip } from '../../../ui/copyTooltip'
 
 type Props = {
   hasCopied: boolean
