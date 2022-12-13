@@ -107,13 +107,14 @@ interface ServiceState {
   toggleService: (id: string) => void
   resetServices: () => void
   setServicePrice: (id: string, price: number) => void
+  setEuroCourse: (euroCourse: number) => void
   setServiceTextSummary: (id: string, textSummary: string) => void
 }
 
 const initialState = {
   settings: defaultSettings,
   services: defaultServices,
-  euroCourse: 4.5,
+  euroCourse: 0,
 }
 
 export const useServicesStore = create<ServiceState>((set) => ({
@@ -240,5 +241,10 @@ export const useServicesStore = create<ServiceState>((set) => ({
     set((state) => ({
       ...state,
       services: setTextSummary(state.services, id, textSummary),
+    })),
+  setEuroCourse: (euroCourse) =>
+    set((state) => ({
+      ...state,
+      euroCourse,
     })),
 }))

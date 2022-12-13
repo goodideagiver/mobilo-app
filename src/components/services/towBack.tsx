@@ -1,11 +1,28 @@
+import { getEuroCourse } from '../../api/getEuroCourse'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
+
+import { useEffect } from 'react'
+import { useQuery } from 'react-query'
+import { towBackText } from '../../helpers/outputTextFormatters/towBackText'
 
 export const TowBack = () => {
   const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === '5'))
   const distance = useServicesStore((state) => state.settings.distanceAfterRepair)
 
+  const setEuroCourse = useServicesStore((state) => state.setEuroCourse)
+
   const isActive = towingServiceStore?.active
+
+  const { data, isFetching, error, isLoading } = useQuery({
+    queryKey: 'euroRate',
+    cacheTime: 1000 * 60 * 60,
+    queryFn: () => getEuroCourse(),
+  })
+
+  useEffect(() => {
+    setEuroCourse(data?.rate)
+  }, [data?.rate])
 
   if (!isActive) return null
 
@@ -21,10 +38,7 @@ export const TowBack = () => {
           preventCombineGroup: null,
           serviceType: 'after repair',
         }}
-        textToCopy={`OPŁATA MANIPULACYJNA = 60,03 EURO NETTO  x KURS 0 = 0,00 zł
-OPŁATA ZA ODLEGŁOŚĆ 1,41 EUR/km NETTO X 51 km x KURS 0 = 0,00 zł NETTO
-RAZEM = 0,00 ZL NETTO
-`}
+        textToCopy={towBackText(data?.rate, distance)}
       />
     )
 
