@@ -1,8 +1,12 @@
-import { DeleteIcon, SettingsIcon } from '@chakra-ui/icons'
+import { DeleteIcon, ViewIcon } from '@chakra-ui/icons'
 import { HStack, IconButton, Tooltip } from '@chakra-ui/react'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 
-export const MainHeaderButtons = () => {
+type Props = {
+  summaryOpenHandler: () => void
+}
+
+export const MainHeaderButtons = ({ summaryOpenHandler }: Props) => {
   const { resetServices } = useServicesStore((state) => state)
 
   const resetButtonHandler = () => resetServices()
@@ -13,9 +17,9 @@ export const MainHeaderButtons = () => {
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip hasArrow label='Otwórz ustawienia'>
-        <IconButton aria-label='Otwórz ustawienia'>
-          <SettingsIcon />
+      <Tooltip hasArrow label='Podsumowanie usług'>
+        <IconButton onClick={summaryOpenHandler} aria-label='Podsumowanie usług'>
+          <ViewIcon />
         </IconButton>
       </Tooltip>
     </HStack>

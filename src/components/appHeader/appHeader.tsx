@@ -10,9 +10,10 @@ import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurren
 
 type Props = {
   drawerOpenHandler: () => void
+  summaryOpenHandler: () => void
 }
 
-export const AppHeader = ({ drawerOpenHandler }: Props) => {
+export const AppHeader = ({ drawerOpenHandler, summaryOpenHandler }: Props) => {
   const services = useServicesStore((state) => state.services)
 
   const activeServices = services.filter((service) => service.active)
@@ -38,7 +39,7 @@ export const AppHeader = ({ drawerOpenHandler }: Props) => {
         </Box>
       )}
       <ServicesSummary activeServices={activeServices} activeServiceSummary={activeServiceSummary} />
-      <MainHeaderButtons />
+      <MainHeaderButtons summaryOpenHandler={summaryOpenHandler} />
     </Flex>
   )
 }
