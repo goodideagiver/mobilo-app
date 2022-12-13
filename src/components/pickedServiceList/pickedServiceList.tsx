@@ -1,4 +1,5 @@
-import { Center, Stack, Text } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Button, Center, HStack, ScaleFade, Stack, Text } from '@chakra-ui/react'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { DocumentationBonus } from '../services/documentationBonus'
 import { DriveToClient } from '../services/driveToClient'
@@ -7,7 +8,11 @@ import { RepairOnSiteBonus } from '../services/repairOnSiteBonus'
 import { TowBack } from '../services/towBack'
 import { Towing } from '../services/towing'
 
-export const PickedServiceList = () => {
+type Props = {
+  drawerOpenHandler: () => void
+}
+
+export const PickedServiceList = ({ drawerOpenHandler }: Props) => {
   const hasServicesToDisplay =
     useServicesStore((state) => state.services).filter((service) => service.active).length > 0
 
@@ -24,15 +29,19 @@ export const PickedServiceList = () => {
 
   const noPickedServiceMessage = (
     <Center h='100%'>
-      <Text fontSize='2xl' fontWeight='bold' fontStyle='italic'>
-        Nie wybrano jeszcze żadnej usługi
-      </Text>
+      <HStack>
+        <ScaleFade in>
+          <Button display='flex' gap='.4rem' rounded='3xl' onClick={drawerOpenHandler}>
+            <AddIcon />
+            <Text>Dodaj usługę</Text>
+          </Button>
+        </ScaleFade>
+      </HStack>
     </Center>
   )
 
   return (
     <Stack
-      opacity={hasServicesToDisplay ? '1' : '0.5'}
       border='2px'
       borderColor='gray.600'
       overflowY='auto'

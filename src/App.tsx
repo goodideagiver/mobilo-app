@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Stack overflow='hidden' padding='4' gap='16px' h='100vh'>
       <AppHeader drawerOpenHandler={() => setDrawerOpen(true)} />
-      <PickedServiceList />
+      <PickedServiceList drawerOpenHandler={() => setDrawerOpen(true)} />
       <ServicePickDrawer isOpen={drawerOpen} drawerCloseHandler={() => setDrawerOpen(false)} />
     </Stack>
   )
