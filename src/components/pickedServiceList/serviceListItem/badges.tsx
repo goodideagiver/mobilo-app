@@ -7,15 +7,17 @@ type Props = {
 }
 
 export const Badges = ({ badges, hasIncompatibleServices }: Props) => {
-  const badgesToDisplay = hasIncompatibleServices ? (
+  const defaultBadges = badges.map((badge) => {
+    return <Badge colorScheme='green'>{badge}</Badge>
+  })
+
+  const incompatibilityBadge = (
     <Badge colorScheme='purple' variant='outline'>
       Niekompatybilna
     </Badge>
-  ) : (
-    badges.map((badge) => {
-      return <Badge colorScheme='green'>{badge}</Badge>
-    })
   )
+
+  const badgesToDisplay = hasIncompatibleServices ? incompatibilityBadge : defaultBadges
 
   return <VStack flexBasis={'10%'}>{badgesToDisplay}</VStack>
 }
