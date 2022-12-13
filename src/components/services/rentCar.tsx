@@ -2,7 +2,7 @@ import { FormControl, FormLabel, Input, Select } from '@chakra-ui/react'
 import { ChangeEventHandler } from 'react'
 import { rentCars } from '../../store/servicesStore/rentCars'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 import { useState } from 'react'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'

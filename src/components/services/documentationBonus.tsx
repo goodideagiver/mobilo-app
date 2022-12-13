@@ -1,6 +1,6 @@
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { Service } from '../../store/servicesStore/servicesTypes'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 export const DocumentationBonus = () => {
   const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === '6'))

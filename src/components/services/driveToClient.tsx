@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, HStack, Input } from '@chakra-ui/react'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 import { ChangeEventHandler } from 'react'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'

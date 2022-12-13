@@ -1,7 +1,7 @@
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { handlingFee, rate, useServicesStore } from '../../store/servicesStore/servicesStore'
 import { Service } from '../../store/servicesStore/servicesTypes'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 type Props = {
   serviceId: string
