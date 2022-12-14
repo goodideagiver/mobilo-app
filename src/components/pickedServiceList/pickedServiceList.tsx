@@ -7,6 +7,7 @@ import { RentCar } from '../services/rentCar'
 import { RepairOnSiteBonus } from '../services/repairOnSiteBonus'
 import { TowBack } from '../services/towBack'
 import { Towing } from '../services/towing'
+import { ModifierKeyDisplay } from '../ui/ModifierKeyDisplay'
 
 type Props = {
   drawerOpenHandler: () => void
@@ -31,10 +32,12 @@ export const PickedServiceList = ({ drawerOpenHandler }: Props) => {
     <Center h='100%'>
       <HStack>
         <ScaleFade in>
-          <Button display='flex' gap='.4rem' rounded='3xl' onClick={drawerOpenHandler}>
-            <AddIcon />
-            <Text>Dodaj usługę</Text>
-          </Button>
+          <ModifierKeyDisplay callback={drawerOpenHandler} keyboardKey={'D'}>
+            <Button display='flex' gap='.4rem' rounded='3xl' onClick={drawerOpenHandler}>
+              <AddIcon />
+              <Text>Dodaj usługę</Text>
+            </Button>
+          </ModifierKeyDisplay>
         </ScaleFade>
       </HStack>
     </Center>

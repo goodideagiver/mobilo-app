@@ -14,12 +14,14 @@ export const AppHeaderControls = () => {
       inputTitle: 'Odległość',
       value: distanceBeforeRepair,
       onChange: distanceInputHandler,
+      focusShortcut: 'Q',
     },
     {
       inputHelperText: 'Odległość w jedną stronę (km)',
       inputTitle: 'Odległość odwiezienia',
       value: distanceAfterRepair,
       onChange: distanceAfterRepairInputHandler,
+      focusShortcut: 'W',
     },
   ].map((input) => <HeaderNumberInput key={input.inputTitle} {...input} />)
 
