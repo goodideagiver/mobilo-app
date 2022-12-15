@@ -1,6 +1,8 @@
 import { TopLevelSettings, VehicleWeight } from './servicesTypes'
 
+import { Key } from 'react'
 import create from 'zustand'
+import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { calculateDriveToClient, calculateTowing, setTextSummary } from './helpers'
 
 const defaultSettings: TopLevelSettings = {
@@ -19,6 +21,7 @@ export type SingleService = {
   textSummary: string
   active: boolean
   beforeRepair?: boolean
+  deleteServiceShortcut?: Key
 }
 
 type Fee = {
@@ -46,6 +49,7 @@ const defaultServices: SingleService[] = [
     textSummary: '',
     active: false,
     beforeRepair: true,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.TOW_TO_BREAKDOWN,
   },
   {
     title: 'Auto zastępcze',
@@ -55,6 +59,7 @@ const defaultServices: SingleService[] = [
     textSummary: '',
     active: false,
     beforeRepair: true,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.RENT_CAR,
   },
   {
     title: 'Dojazd do miejsca awarii',
@@ -64,6 +69,7 @@ const defaultServices: SingleService[] = [
     textSummary: '',
     active: false,
     beforeRepair: true,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.DRIVE_TO_CLIENT,
   },
   {
     title: 'Bonus za naprawę na miejscu',
@@ -72,6 +78,7 @@ const defaultServices: SingleService[] = [
     price: 100,
     textSummary: 'Bonus za naprawę na miejscu 100 zł',
     active: false,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.BONUS,
   },
   {
     title: 'Odwiezienie auta',
@@ -80,6 +87,7 @@ const defaultServices: SingleService[] = [
     price: defaultSettings.distanceAfterRepair < 50 ? 300 : defaultSettings.distanceAfterRepair * 1.41 * 4 + 60.03 * 4,
     textSummary: '',
     active: false,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.TOW_BACK,
   },
   {
     title: 'Dokumentacja',
@@ -88,6 +96,7 @@ const defaultServices: SingleService[] = [
     price: 100,
     textSummary: 'Ryczałt 100 zł za wykonanie dokumentacji',
     active: false,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.DOCUMENTATION,
   },
 ]
 

@@ -1,5 +1,6 @@
 import { FormControl, FormHelperText, FormLabel, HStack, Radio, RadioGroup } from '@chakra-ui/react'
 import { useRef } from 'react'
+import { SHORTCUT_KEYS } from '../../../constants/shortcutKeys'
 import { ModifierKeyDisplay } from '../../ui/ModifierKeyDisplay'
 import { useVehicleMassToggle } from './useVehicleMassToggle'
 
@@ -16,7 +17,7 @@ export const VehicleMassToggle = () => {
   return (
     <FormControl h='100%' display='flex' flexDir='column' justifyContent='space-between'>
       <FormLabel as='legend'>Masa pojazdu</FormLabel>
-      <ModifierKeyDisplay keyboardKey='E' callback={keyBoardPressHandler}>
+      <ModifierKeyDisplay keyboardKey={SHORTCUT_KEYS.FOCUS.VEHICLE_MASS} callback={keyBoardPressHandler}>
         <RadioGroup ref={radioRef} onChange={vehicleWeightInputHandler} defaultValue='below 3.5t'>
           <HStack spacing='24px'>
             <Radio value='below 3.5t'>Poniżej 3.5t</Radio>

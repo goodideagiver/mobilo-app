@@ -1,5 +1,6 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Button, Center, HStack, ScaleFade, Stack, Text } from '@chakra-ui/react'
+import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { DocumentationBonus } from '../services/documentationBonus'
 import { DriveToClient } from '../services/driveToClient'
@@ -32,7 +33,7 @@ export const PickedServiceList = ({ drawerOpenHandler }: Props) => {
     <Center h='100%'>
       <HStack>
         <ScaleFade in>
-          <ModifierKeyDisplay callback={drawerOpenHandler} keyboardKey={'D'}>
+          <ModifierKeyDisplay callback={drawerOpenHandler} keyboardKey={SHORTCUT_KEYS.SHOW_DRAWER}>
             <Button display='flex' gap='.4rem' rounded='3xl' onClick={drawerOpenHandler}>
               <AddIcon />
               <Text>Dodaj usługę</Text>

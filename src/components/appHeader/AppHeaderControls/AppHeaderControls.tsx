@@ -1,4 +1,5 @@
 import { HStack } from '@chakra-ui/react'
+import { SHORTCUT_KEYS } from '../../../constants/shortcutKeys'
 import { HeaderNumberInput } from '../headerNumberInput'
 
 import { VehicleMassToggle } from '../VehicleMassToggle/VehicleMassToggle'
@@ -14,14 +15,14 @@ export const AppHeaderControls = () => {
       inputTitle: 'Odległość',
       value: distanceBeforeRepair,
       onChange: distanceInputHandler,
-      focusShortcut: 'Q',
+      focusShortcut: SHORTCUT_KEYS.FOCUS.DISTANCE_TO_BREAKDOWN,
     },
     {
       inputHelperText: 'Odległość w jedną stronę (km)',
       inputTitle: 'Odległość odwiezienia',
       value: distanceAfterRepair,
       onChange: distanceAfterRepairInputHandler,
-      focusShortcut: 'W',
+      focusShortcut: SHORTCUT_KEYS.FOCUS.DISTANCE_TOW_BACK,
     },
   ].map((input) => <HeaderNumberInput key={input.inputTitle} {...input} />)
 

@@ -1,0 +1,20 @@
+const REMOVE_SERVICE = {
+  TOW_TO_BREAKDOWN: 'H',
+  TOW_BACK: 'J',
+  DRIVE_TO_CLIENT: 'K',
+  RENT_CAR: 'L',
+  DOCUMENTATION: 'B',
+  BONUS: 'N',
+}
+
+export const SHORTCUT_KEYS = {
+  VIEW_SERVICES: 'V',
+  RESET: 'R',
+  SHOW_DRAWER: 'D',
+  FOCUS: {
+    DISTANCE_TO_BREAKDOWN: 'Q',
+    DISTANCE_TOW_BACK: 'W',
+    VEHICLE_MASS: 'E',
+  },
+  REMOVE_SERVICE,
+}

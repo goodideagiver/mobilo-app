@@ -5,6 +5,7 @@ import { Badges } from '../badges'
 import { CopyText } from '../copyText/copyText'
 import { DeleteServiceButton } from '../deleteServiceButton'
 import { PriceDisplay } from '../priceDisplay'
+import { DeleteServiceShortcut } from './DeleteServiceShortcut'
 import { useServiceListItem } from './useServiceListItem'
 
 type Props = {
@@ -30,10 +31,8 @@ const wrapperStyles = {
 export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasError, cantBeMixedWith }: Props) => {
   const { title, price, badges } = service
 
-  const { bgColor, conflictingServicesText, deleteServiceButtonHandler, hasErrors, isActive } = useServiceListItem(
-    serviceId,
-    cantBeMixedWith,
-  )
+  const { bgColor, conflictingServicesText, deleteServiceButtonHandler, hasErrors, isActive, shortcutKey } =
+    useServiceListItem(serviceId, cantBeMixedWith)
 
   if (!isActive) return null
 
@@ -46,7 +45,9 @@ export const ServiceListItem = ({ service, textToCopy, children, serviceId, hasE
       <Badges hasIncompatibleServices={hasErrors} badges={badges} />
       <CopyText hasError={hasError || hasErrors} textToCopy={hasErrors ? conflictingServicesText : textToCopy} />
       <PriceDisplay price={price} />
-      <DeleteServiceButton onDelete={deleteServiceButtonHandler} />
+      <DeleteServiceShortcut shortcutKey={shortcutKey} serviceDeleteHandler={deleteServiceButtonHandler}>
+        <DeleteServiceButton onDelete={deleteServiceButtonHandler} />
+      </DeleteServiceShortcut>
     </Flex>
   )
 }

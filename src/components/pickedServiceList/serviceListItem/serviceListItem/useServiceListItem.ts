@@ -25,5 +25,6 @@ export const useServiceListItem = (serviceId: string, cantBeMixedWith?: string[]
     isActive,
     deleteServiceButtonHandler,
     conflictingServicesText,
+    shortcutKey: serviceStore?.deleteServiceShortcut,
   }
 }
