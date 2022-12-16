@@ -3,7 +3,6 @@ import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
 import { towBackText } from '../../helpers/outputTextFormatters/towBackText'
 
 export const TowBack = () => {
@@ -11,18 +10,24 @@ export const TowBack = () => {
   const distance = useServicesStore((state) => state.settings.distanceAfterRepair)
 
   const setEuroCourse = useServicesStore((state) => state.setEuroCourse)
+  const euroCourse = useServicesStore((state) => state.euroCourse)
 
   const isActive = towingServiceStore?.active
 
-  const { data, isFetching, error, isLoading } = useQuery({
-    queryKey: 'euroRate',
-    cacheTime: 1000 * 60 * 60,
-    queryFn: () => getEuroCourse(),
-  })
-
   useEffect(() => {
-    setEuroCourse(data?.rate)
-  }, [data?.rate])
+    if (!isActive || distance < 50) return
+
+    const minutesSinceLastFetch = (Date.now() - euroCourse.timestamp) / 1000 / 60
+
+    if (minutesSinceLastFetch < 60) return
+
+    const fetch = async () => {
+      const data = await getEuroCourse()
+
+      setEuroCourse(data.rate, Date.now())
+    }
+    fetch()
+  }, [euroCourse, isActive, distance])
 
   if (!isActive) return null
 
@@ -38,7 +43,7 @@ export const TowBack = () => {
           preventCombineGroup: null,
           serviceType: 'after repair',
         }}
-        textToCopy={towBackText(data?.rate, distance)}
+        textToCopy={towBackText(euroCourse.rate, distance)}
       />
     )
 

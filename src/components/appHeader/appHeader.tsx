@@ -22,7 +22,7 @@ export const AppHeader = ({ drawerOpenHandler, summaryOpenHandler }: Props) => {
 
   const euroRate = useServicesStore((state) => state.euroCourse)
 
-  const euroRateIsSet = Boolean(euroRate && euroRate > 0)
+  const euroRateIsSet = Boolean(euroRate.rate && euroRate.rate > 0)
 
   return (
     <Flex w='100%' align='center' justify='space-between' gap='2'>
@@ -33,7 +33,7 @@ export const AppHeader = ({ drawerOpenHandler, summaryOpenHandler }: Props) => {
           <Center h='100%'>
             <VStack>
               <Text fontWeight='bold'>Kurs EUR:</Text>
-              <Text>{numberToOutputCurrencyString(euroRate)}</Text>
+              <Text>{numberToOutputCurrencyString(euroRate.rate)}</Text>
             </VStack>
           </Center>
         </Box>

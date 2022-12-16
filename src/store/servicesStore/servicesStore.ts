@@ -103,7 +103,10 @@ const defaultServices: SingleService[] = [
 interface ServiceState {
   settings: TopLevelSettings
   services: SingleService[]
-  euroCourse: number
+  euroCourse: {
+    rate: number
+    timestamp: number
+  }
   driveToPlace: {
     rate: number
     hours: number
@@ -116,14 +119,17 @@ interface ServiceState {
   toggleService: (id: string) => void
   resetServices: () => void
   setServicePrice: (id: string, price: number) => void
-  setEuroCourse: (euroCourse: number) => void
+  setEuroCourse: (euroCourse: number, timestamp: number) => void
   setServiceTextSummary: (id: string, textSummary: string) => void
 }
 
 const initialState = {
   settings: defaultSettings,
   services: defaultServices,
-  euroCourse: 0,
+  euroCourse: {
+    rate: 0,
+    timestamp: 0,
+  },
 }
 
 export const useServicesStore = create<ServiceState>((set) => ({
@@ -251,9 +257,12 @@ export const useServicesStore = create<ServiceState>((set) => ({
       ...state,
       services: setTextSummary(state.services, id, textSummary),
     })),
-  setEuroCourse: (euroCourse) =>
+  setEuroCourse: (euroCourse, timestamp) =>
     set((state) => ({
       ...state,
-      euroCourse,
+      euroCourse: {
+        rate: euroCourse,
+        timestamp,
+      },
     })),
 }))
