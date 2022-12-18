@@ -6,8 +6,8 @@ type Props = {
 }
 export const DeleteServiceButton = ({ onDelete }: Props) => {
   return (
-    <Tooltip hasArrow label="Usuń usługę">
-      <IconButton onClick={onDelete} aria-label="Usuń usługę">
+    <Tooltip hasArrow label='Usuń usługę'>
+      <IconButton onClick={onDelete} aria-label='Usuń usługę'>
         <CloseIcon />
       </IconButton>
     </Tooltip>

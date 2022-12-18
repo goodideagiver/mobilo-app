@@ -2,7 +2,7 @@ import { FormControl, FormLabel, Input, Select } from '@chakra-ui/react'
 import { ChangeEventHandler } from 'react'
 import { rentCars } from '../../store/servicesStore/rentCars'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 import { useState } from 'react'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
@@ -50,7 +50,7 @@ export const RentCar = () => {
   return (
     <ServiceListItem
       hasError={!shouldDisplayText}
-      serviceId="2"
+      serviceId='2'
       service={{
         active: true,
         badges: ['przed naprawą'],
@@ -68,9 +68,9 @@ export const RentCar = () => {
           : 'Nie wybrano modelu auta lub dni'
       }
     >
-      <FormControl flex="0 0 200px">
+      <FormControl flex='0 0 200px'>
         <FormLabel>Model</FormLabel>
-        <Select flex={'0 0 200px'} onChange={carSelectHandler} placeholder="Wybierz model">
+        <Select flex={'0 0 200px'} onChange={carSelectHandler} placeholder='Wybierz model'>
           {rentCars.map((car) => (
             <option key={car.name} value={car.name}>
               {car.name}
@@ -78,9 +78,9 @@ export const RentCar = () => {
           ))}
         </Select>
       </FormControl>
-      <FormControl flex="0 0 200px">
+      <FormControl flex='0 0 200px'>
         <FormLabel>Dni</FormLabel>
-        <Input step={0} onChange={daysInputHandler} value={days} min="0" placeholder="days" type="number" />
+        <Input step={0} onChange={daysInputHandler} value={days} min='0' placeholder='days' type='number' />
       </FormControl>
     </ServiceListItem>
   )

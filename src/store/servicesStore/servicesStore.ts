@@ -1,6 +1,8 @@
 import { TopLevelSettings, VehicleWeight } from './servicesTypes'
 
+import { Key } from 'react'
 import create from 'zustand'
+import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { calculateDriveToClient, calculateTowing, setTextSummary } from './helpers'
 
 const defaultSettings: TopLevelSettings = {
@@ -19,6 +21,7 @@ export type SingleService = {
   textSummary: string
   active: boolean
   beforeRepair?: boolean
+  deleteServiceShortcut?: Key
 }
 
 type Fee = {
@@ -46,6 +49,7 @@ const defaultServices: SingleService[] = [
     textSummary: '',
     active: false,
     beforeRepair: true,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.TOW_TO_BREAKDOWN,
   },
   {
     title: 'Auto zastępcze',
@@ -55,6 +59,7 @@ const defaultServices: SingleService[] = [
     textSummary: '',
     active: false,
     beforeRepair: true,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.RENT_CAR,
   },
   {
     title: 'Dojazd do miejsca awarii',
@@ -64,6 +69,7 @@ const defaultServices: SingleService[] = [
     textSummary: '',
     active: false,
     beforeRepair: true,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.DRIVE_TO_CLIENT,
   },
   {
     title: 'Bonus za naprawę na miejscu',
@@ -72,6 +78,7 @@ const defaultServices: SingleService[] = [
     price: 100,
     textSummary: 'Bonus za naprawę na miejscu 100 zł',
     active: false,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.BONUS,
   },
   {
     title: 'Odwiezienie auta',
@@ -80,6 +87,7 @@ const defaultServices: SingleService[] = [
     price: defaultSettings.distanceAfterRepair < 50 ? 300 : defaultSettings.distanceAfterRepair * 1.41 * 4 + 60.03 * 4,
     textSummary: '',
     active: false,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.TOW_BACK,
   },
   {
     title: 'Dokumentacja',
@@ -88,13 +96,17 @@ const defaultServices: SingleService[] = [
     price: 100,
     textSummary: 'Ryczałt 100 zł za wykonanie dokumentacji',
     active: false,
+    deleteServiceShortcut: SHORTCUT_KEYS.REMOVE_SERVICE.DOCUMENTATION,
   },
 ]
 
 interface ServiceState {
   settings: TopLevelSettings
   services: SingleService[]
-  euroCourse: number
+  euroCourse: {
+    rate: number
+    timestamp: number
+  }
   driveToPlace: {
     rate: number
     hours: number
@@ -107,13 +119,17 @@ interface ServiceState {
   toggleService: (id: string) => void
   resetServices: () => void
   setServicePrice: (id: string, price: number) => void
+  setEuroCourse: (euroCourse: number, timestamp: number) => void
   setServiceTextSummary: (id: string, textSummary: string) => void
 }
 
 const initialState = {
   settings: defaultSettings,
   services: defaultServices,
-  euroCourse: 4.5,
+  euroCourse: {
+    rate: 0,
+    timestamp: 0,
+  },
 }
 
 export const useServicesStore = create<ServiceState>((set) => ({
@@ -240,5 +256,13 @@ export const useServicesStore = create<ServiceState>((set) => ({
     set((state) => ({
       ...state,
       services: setTextSummary(state.services, id, textSummary),
+    })),
+  setEuroCourse: (euroCourse, timestamp) =>
+    set((state) => ({
+      ...state,
+      euroCourse: {
+        rate: euroCourse,
+        timestamp,
+      },
     })),
 }))

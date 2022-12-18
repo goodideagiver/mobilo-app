@@ -1,5 +1,5 @@
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
 export const RepairOnSiteBonus = () => {
   const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === '4'))
@@ -11,7 +11,7 @@ export const RepairOnSiteBonus = () => {
   return (
     <ServiceListItem
       cantBeMixedWith={['5', '1', '2']}
-      serviceId="4"
+      serviceId='4'
       service={{
         active: true,
         badges: ['po naprawie', 'ryczałt'],
@@ -20,7 +20,7 @@ export const RepairOnSiteBonus = () => {
         preventCombineGroup: null,
         serviceType: 'after repair',
       }}
-      textToCopy="Bonus 100 zł za naprawę na miejscu"
+      textToCopy='Bonus 100 zł za naprawę na miejscu'
     />
   )
 }

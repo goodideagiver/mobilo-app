@@ -8,6 +8,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { StrictMode } from 'react'
 
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -16,15 +17,19 @@ const config: ThemeConfig = {
 
 const theme = extendTheme({ config })
 
+const queryClient = new QueryClient()
+
 const container = document.getElementById('root')
 const root = createRoot(container!)
 const app = (
   <StrictMode>
-    <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ChakraProvider>
+    </QueryClientProvider>
   </StrictMode>
 )
 root.render(app)

@@ -27,6 +27,7 @@
     "framer-motion": "^7.6.15",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-query": "^3.39.2",
     "react-router-dom": "6.4.3",
     "zustand": "^4.1.4"
   },
@@ -63,7 +64,7 @@
     "postcss-load-config": "4.0.1",
     "postcss-loader": "7.0.1",
     "postcss-nested": "5.0.6",
-    "prettier": "2.7.1",
+    "prettier": "^2.7.1",
     "sass": "1.54.9",
     "semantic-release": "19.0.5",
     "standard-version": "9.5.0",

@@ -1,0 +1,45 @@
+.wrapper {
+  position: relative;
+}
+
+.keyWrapper {
+  padding: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 110%);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(15, 15, 15, 0.8);
+  display: grid;
+  place-items: center;
+  animation: scaleIn 0.1s backwards;
+}
+
+.left {
+  left: 0;
+  top: 50%;
+  transform: translate(-110%, -60%);
+  animation: scaleInLeft 0.1s backwards;
+}
+
+@keyframes scaleInLeft {
+  from {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-110%, -50%);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: translate(-50%, 50%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 110%);
+  }
+}
