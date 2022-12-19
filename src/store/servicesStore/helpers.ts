@@ -1,4 +1,4 @@
-import { handlingFee, rate, SingleService } from './servicesStore'
+import { handlingFee, rate, SingleService } from './servicesSlice'
 import { VehicleWeight } from './servicesTypes'
 
 export const driveToClientCostPerKM = 0.5

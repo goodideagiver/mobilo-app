@@ -1,6 +1,6 @@
 import { Box, Circle, HStack, Stack, Stat, StatHelpText, StatLabel, StatNumber, Text } from '@chakra-ui/react'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
-import { SingleService } from '../../store/servicesStore/servicesStore'
+import { SingleService } from '../../store/servicesStore/servicesSlice'
 
 type Props = {
   activeServices: SingleService[]
