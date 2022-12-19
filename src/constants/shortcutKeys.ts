@@ -5,7 +5,7 @@ const REMOVE_SERVICE = {
   RENT_CAR: 'L',
   DOCUMENTATION: 'B',
   BONUS: 'N',
-}
+} as const
 
 export const SHORTCUT_KEYS = {
   VIEW_SERVICES: 'V',
@@ -17,4 +17,4 @@ export const SHORTCUT_KEYS = {
     VEHICLE_MASS: 'E',
   },
   REMOVE_SERVICE,
-}
+} as const
