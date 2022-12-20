@@ -72,8 +72,8 @@ export const RentCar = () => {
         <FormLabel>Model</FormLabel>
         <Select flex={'0 0 200px'} onChange={carSelectHandler} placeholder='Wybierz model'>
           {rentCars.map((car) => (
-            <option key={car.name} value={car.name}>
-              {car.name}
+            <option style={{ fontSize: '12px', textAlign: 'center' }} key={car.name} value={car.name}>
+              {`${car.name} - ${numberToOutputCurrencyString(car.price)} / doba`}
             </option>
           ))}
         </Select>
