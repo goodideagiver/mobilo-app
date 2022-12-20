@@ -1,5 +1,6 @@
 import { FormControl, FormHelperText, FormLabel, Input } from '@chakra-ui/react'
 import { ChangeEvent, Key, useRef } from 'react'
+import { useExtendedInfoStore } from '../../store/uiStore/extendedInfoStore'
 import { ModifierKeyDisplay } from '../ui/ModifierKeyDisplay'
 
 type Props = {
@@ -12,6 +13,8 @@ type Props = {
 export const HeaderNumberInput = ({ inputHelperText, inputTitle, value, onChange, focusShortcut }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const extendedInfo = useExtendedInfoStore((state) => state.extendedInfo)
+
   return (
     <FormControl h='100%' display='flex' flexDir='column' justifyContent='space-between'>
       <FormLabel>{inputTitle}</FormLabel>
@@ -23,7 +26,7 @@ export const HeaderNumberInput = ({ inputHelperText, inputTitle, value, onChange
       >
         <Input ref={inputRef} type='number' min='0' value={value} onChange={onChange} />
       </ModifierKeyDisplay>
-      <FormHelperText>{inputHelperText}</FormHelperText>
+      {extendedInfo && <FormHelperText>{inputHelperText}</FormHelperText>}
     </FormControl>
   )
 }
