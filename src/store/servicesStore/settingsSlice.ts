@@ -1,8 +1,7 @@
 import { StateCreator } from 'zustand'
 import { DriveToPlaceSlice } from './driveToPlaceSlice'
 import { calculateDriveToClient, calculateTowing } from './helpers'
-import { ServicesSlice } from './servicesSlice'
-import { TopLevelSettings } from './servicesTypes'
+import { ServicesSlice, TopLevelSettings } from './servicesTypes'
 
 export type SettingsSlice = {
   settings: TopLevelSettings

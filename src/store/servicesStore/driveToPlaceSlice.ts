@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand'
 import { calculateDriveToClient } from './helpers'
-import { ServicesSlice } from './servicesSlice'
+import { ServicesSlice } from './servicesTypes'
 import { SettingsSlice } from './settingsSlice'
 
 export type DriveToPlaceSlice = {

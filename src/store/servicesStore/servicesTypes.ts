@@ -1,3 +1,5 @@
+import { Key } from 'react'
+
 export type VehicleWeight = 'below 3.5t' | '3.5t-5.5t'
 
 export type TopLevelSettings = {
@@ -36,4 +38,29 @@ export interface TowingFixedPrice extends TowingAfterRepair {
 
 export interface TowingAbove50km extends TowingAfterRepair {
   badges: ['po naprawie']
+}
+
+export type MixGroup = 1 | 2 | 3 | null
+
+export type SingleService = {
+  id: string
+  mixGroup: MixGroup
+  price: number
+  title: string
+  textSummary: string
+  active: boolean
+  beforeRepair?: boolean
+  deleteServiceShortcut?: Key
+}
+
+export type ServicesSlice = {
+  services: SingleService[]
+  toggleService: (id: string) => void
+  resetServices: () => void
+  setServicePrice: (id: string, price: number) => void
+  setServiceTextSummary: (id: string, textSummary: string) => void
+}
+
+export type Fee = {
+  [K in VehicleWeight]: number
 }
