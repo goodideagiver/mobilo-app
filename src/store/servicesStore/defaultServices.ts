@@ -1,4 +1,4 @@
-import { handlingFee, rate } from '../../constants/servicesFinancialData'
+import { towBeforeRepairHandlingFee, towBeforeRepairRate } from '../../constants/servicesFinancialData'
 import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { SingleService } from './servicesTypes'
 import { defaultSettings } from './settingsSlice'
@@ -9,8 +9,8 @@ export const defaultServices: SingleService[] = [
     id: '1',
     mixGroup: 1,
     price:
-      handlingFee[defaultSettings.vehicleWeight] +
-      rate[defaultSettings.vehicleWeight] * defaultSettings.distanceBeforeRepair,
+      towBeforeRepairHandlingFee[defaultSettings.vehicleWeight] +
+      towBeforeRepairRate[defaultSettings.vehicleWeight] * defaultSettings.distanceBeforeRepair,
     textSummary: '',
     active: false,
     beforeRepair: true,

@@ -1,8 +1,7 @@
-import { handlingFee, rate } from '../../constants/servicesFinancialData'
-import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { Service } from '../../store/servicesStore/servicesTypes'
 import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
+import { towingText } from './towing.helpers'
 
 type Props = {
   serviceId: string
@@ -17,15 +16,7 @@ export const Towing = ({ serviceId }: Props) => {
 
   if (!isActive) return null
 
-  const handlingFeeFormatted = numberToOutputCurrencyString(handlingFee[vehicleWeight])
-
-  const rateFormatted = numberToOutputCurrencyString(rate[vehicleWeight])
-
-  const textToCopy = `OPŁATA MANIPULACYJNA = ${handlingFeeFormatted} NETTO
-  OPŁATA ZA ODLEGŁOŚĆ = ${rateFormatted}/km NETTO X ${distanceBeforeRepair} km = ${numberToOutputCurrencyString(
-    rate[vehicleWeight] * distanceBeforeRepair,
-  )}
-  RAZEM = ${numberToOutputCurrencyString(towingServiceStore.price)} NETTO`
+  const textToCopy = towingText(vehicleWeight, distanceBeforeRepair)
 
   const serviceData: Service = {
     title: 'Holowanie',

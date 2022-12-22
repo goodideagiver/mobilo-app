@@ -13,10 +13,15 @@ export const PriceDisplay = ({ price }: Props) => {
 
   const buttonContent = hasCopied ? <CheckIcon /> : priceFormatted
 
+  const copyHandler = () => {
+    onCopy()
+    navigator.clipboard.writeText(price.toString())
+  }
+
   return (
     <Stat display={'flex'} justifyContent='center' w='fit-content' flex='0 0 120px'>
       <CopyTooltip hasCopied={hasCopied}>
-        <button onClick={onCopy}>
+        <button onClick={copyHandler}>
           <StatLabel>Opłata</StatLabel>
           <StatNumber whiteSpace='nowrap'>{buttonContent}</StatNumber>
         </button>
