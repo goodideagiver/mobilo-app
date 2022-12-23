@@ -4,7 +4,7 @@ import { textErrorStyle, wrapperErrorStyle } from './copyText.styles'
 
 export const useCopyText = (textToCopy: string = '', hasError?: boolean) => {
   const formattedText = replacePolishChars(textToCopy)
-    .split('\n')
+    .split('|')
     .map((line) => line.trim())
     .join('\n')
     .trim()
