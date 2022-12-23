@@ -1,4 +1,5 @@
 import { HStack, Text } from '@chakra-ui/react'
+import { CopyTextPopover } from '../../../ui/copyTextPopover'
 
 import { textToCopyStyles, wrapperStyles } from './copyText.styles'
 import { CopyTextButton } from './CopyTextButton'
@@ -16,11 +17,13 @@ export const CopyText = ({ textToCopy, hasError }: Props) => {
 
   return (
     <HStack {...wrapperStyles} {...errorStyle}>
-      <Text {...textStyle} {...textToCopyStyles}>
-        {textToCopy.split('|').map((text) => (
-          <p>{text}</p>
-        ))}
-      </Text>
+      <CopyTextPopover onCopy={onCopy} text={textToCopy}>
+        <Text {...textStyle} {...textToCopyStyles}>
+          {textToCopy.split('|').map((text) => (
+            <p>{text}</p>
+          ))}
+        </Text>
+      </CopyTextPopover>
       <CopyTextButton hasCopied={hasCopied} onCopy={onCopy} />
     </HStack>
   )
