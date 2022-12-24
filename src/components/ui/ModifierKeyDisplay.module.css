@@ -15,6 +15,7 @@
   display: grid;
   place-items: center;
   animation: scaleIn 0.1s backwards;
+  z-index: 10;
 }
 
 .left {
@@ -26,11 +27,11 @@
 
 @keyframes scaleInLeft {
   from {
-    transform: translate(-100%, -50%);
+    transform: translate(-100%, -60%);
     opacity: 0;
   }
   to {
-    transform: translate(-110%, -50%);
+    transform: translate(-110%, -60%);
   }
 }
 

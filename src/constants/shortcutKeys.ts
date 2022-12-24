@@ -5,16 +5,18 @@ const REMOVE_SERVICE = {
   RENT_CAR: 'L',
   DOCUMENTATION: 'B',
   BONUS: 'N',
-}
+} as const
+
+const FOCUS = {
+  DISTANCE_TO_BREAKDOWN: 'Q',
+  DISTANCE_TOW_BACK: 'W',
+  VEHICLE_MASS: 'E',
+} as const
 
 export const SHORTCUT_KEYS = {
   VIEW_SERVICES: 'V',
   RESET: 'R',
   SHOW_DRAWER: 'D',
-  FOCUS: {
-    DISTANCE_TO_BREAKDOWN: 'Q',
-    DISTANCE_TOW_BACK: 'W',
-    VEHICLE_MASS: 'E',
-  },
+  FOCUS,
   REMOVE_SERVICE,
-}
+} as const

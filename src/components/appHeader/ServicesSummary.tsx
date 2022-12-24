@@ -1,6 +1,7 @@
 import { Box, Circle, HStack, Stack, Stat, StatHelpText, StatLabel, StatNumber, Text } from '@chakra-ui/react'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
-import { SingleService } from '../../store/servicesStore/servicesStore'
+import { SingleService } from '../../store/servicesStore/servicesTypes'
+import { useExtendedInfoStore } from '../../store/uiStore/extendedInfoStore'
 
 type Props = {
   activeServices: SingleService[]
@@ -13,6 +14,8 @@ export const ServicesSummary = ({ activeServiceSummary, activeServices }: Props)
   const hasActiveServices = numberOfActiveServices > 0
 
   const formattedCombinedCost = numberToOutputCurrencyString(activeServiceSummary)
+
+  const extendedInfoActive = useExtendedInfoStore((state) => state.extendedInfo)
 
   return (
     <Box h='100%' rounded='2xl' p='4' shadow='2xl' border='4px' borderColor='green.700'>
@@ -29,7 +32,7 @@ export const ServicesSummary = ({ activeServiceSummary, activeServices }: Props)
             </HStack>
           </StatLabel>
           <StatNumber>{formattedCombinedCost}</StatNumber>
-          <StatHelpText>Całkowita wartość usług</StatHelpText>
+          {extendedInfoActive && <StatHelpText>Całkowita wartość usług</StatHelpText>}
         </Stack>
       </Stat>
     </Box>

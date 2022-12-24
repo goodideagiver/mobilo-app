@@ -1,6 +1,7 @@
 import { FormControl, FormHelperText, FormLabel, HStack, Radio, RadioGroup } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { SHORTCUT_KEYS } from '../../../constants/shortcutKeys'
+import { useExtendedInfoStore } from '../../../store/uiStore/extendedInfoStore'
 import { ModifierKeyDisplay } from '../../ui/ModifierKeyDisplay'
 import { useVehicleMassToggle } from './useVehicleMassToggle'
 
@@ -14,6 +15,8 @@ export const VehicleMassToggle = () => {
     if (radioInputs) [...radioInputs].find((input) => input.checked)?.focus()
   }
 
+  const extendedInfo = useExtendedInfoStore((state) => state.extendedInfo)
+
   return (
     <FormControl h='100%' display='flex' flexDir='column' justifyContent='space-between'>
       <FormLabel as='legend'>Masa pojazdu</FormLabel>
@@ -25,7 +28,7 @@ export const VehicleMassToggle = () => {
           </HStack>
         </RadioGroup>
       </ModifierKeyDisplay>
-      <FormHelperText>Do rozliczania holowania</FormHelperText>
+      {extendedInfo && <FormHelperText>Do rozliczania holowania</FormHelperText>}
     </FormControl>
   )
 }

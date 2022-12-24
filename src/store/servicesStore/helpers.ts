@@ -1,5 +1,5 @@
-import { handlingFee, rate, SingleService } from './servicesStore'
-import { VehicleWeight } from './servicesTypes'
+import { towBeforeRepairHandlingFee, towBeforeRepairRate } from '../../constants/servicesFinancialData'
+import { SingleService, VehicleWeight } from './servicesTypes'
 
 export const driveToClientCostPerKM = 0.5
 
@@ -8,7 +8,7 @@ export const calculateDriveToClient = (rate: number, hours: number, oneWayDistan
 }
 
 export const calculateTowing = (distanceOneWay: number, vehicleWeight: VehicleWeight): number => {
-  return distanceOneWay * rate[vehicleWeight] + handlingFee[vehicleWeight]
+  return distanceOneWay * towBeforeRepairRate[vehicleWeight] + towBeforeRepairHandlingFee[vehicleWeight]
 }
 
 export const setTextSummary = (services: SingleService[], textSummary: string, id: string): SingleService[] => {
