@@ -1,5 +1,6 @@
 import { CheckIcon } from '@chakra-ui/icons'
 import { Stat, StatLabel, StatNumber, useClipboard } from '@chakra-ui/react'
+
 import { CopyTooltip } from '../../ui/copyTooltip'
 
 type Props = {

@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+
 import { Service } from '../../../../store/servicesStore/servicesTypes'
 import { Badges } from '../badges'
 import { CopyText } from '../copyText/copyText'

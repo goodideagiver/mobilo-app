@@ -1,5 +1,6 @@
 import { FormControl, FormHelperText, FormLabel, HStack, Radio, RadioGroup } from '@chakra-ui/react'
 import { useRef } from 'react'
+
 import { SHORTCUT_KEYS } from '../../../constants/shortcutKeys'
 import { useExtendedInfoStore } from '../../../store/uiStore/extendedInfoStore'
 import { ModifierKeyDisplay } from '../../ui/ModifierKeyDisplay'

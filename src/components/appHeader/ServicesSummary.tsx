@@ -1,4 +1,5 @@
 import { Box, Circle, HStack, Stack, Stat, StatHelpText, StatLabel, StatNumber, Text } from '@chakra-ui/react'
+
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { SingleService } from '../../store/servicesStore/servicesTypes'
 import { useExtendedInfoStore } from '../../store/uiStore/extendedInfoStore'

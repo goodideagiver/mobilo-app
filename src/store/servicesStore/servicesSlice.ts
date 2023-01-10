@@ -1,4 +1,5 @@
 import { StateCreator } from 'zustand'
+
 import { defaultServices } from './defaultServices'
 import { EuroCourseSlice } from './euroSlice'
 import { setTextSummary } from './helpers'

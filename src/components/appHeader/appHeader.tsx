@@ -1,12 +1,11 @@
 import { Box, Center, Flex, Text, VStack } from '@chakra-ui/react'
 
+import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { AppHeaderControls } from './AppHeaderControls/AppHeaderControls'
 import { DrawerButton } from './DrawerButton'
 import { MainHeaderButtons } from './MainHeaderButtons'
 import { ServicesSummary } from './ServicesSummary'
-
-import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 
 type Props = {
   drawerOpenHandler: () => void

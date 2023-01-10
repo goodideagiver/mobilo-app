@@ -1,8 +1,8 @@
 import { FormControl, FormLabel, Input, Select } from '@chakra-ui/react'
-import { rentCars } from '../../constants/rentCars'
-import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 
+import { rentCars } from '../../constants/rentCars'
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
+import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
 import { useRentCar } from './rentCar.hook'
 
 const CarOption = ({ name, price, model }: { name: string; price: number; model: string }) => {

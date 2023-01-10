@@ -1,5 +1,6 @@
 import { FormControl, FormHelperText, FormLabel, Input } from '@chakra-ui/react'
 import { ChangeEvent, Key, useRef } from 'react'
+
 import { useExtendedInfoStore } from '../../store/uiStore/extendedInfoStore'
 import { ModifierKeyDisplay } from '../ui/ModifierKeyDisplay'
 

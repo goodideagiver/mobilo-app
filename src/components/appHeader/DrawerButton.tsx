@@ -1,5 +1,6 @@
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { IconButton, Tooltip } from '@chakra-ui/react'
+
 import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { ModifierKeyDisplay } from '../ui/ModifierKeyDisplay'
 

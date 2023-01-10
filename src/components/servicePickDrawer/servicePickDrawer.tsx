@@ -10,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 
 type Props = {

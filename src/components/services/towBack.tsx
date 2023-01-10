@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
+
 import { getEuroCourse } from '../../api/getEuroCourse'
+import { towBackText } from '../../helpers/outputTextFormatters/towBackText'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { ServiceListItem } from '../pickedServiceList/serviceListItem/serviceListItem/serviceListItem'
-
-import { useEffect } from 'react'
-import { towBackText } from '../../helpers/outputTextFormatters/towBackText'
 
 export const TowBack = () => {
   const towingServiceStore = useServicesStore((state) => state.services.find((service) => service.id === '5'))

@@ -1,8 +1,8 @@
 import { HStack, Text } from '@chakra-ui/react'
-import { CopyTextPopover } from '../../../ui/copyTextPopover'
 
-import { textToCopyStyles, wrapperStyles } from './copyText.styles'
+import { CopyTextPopover } from '../../../ui/copyTextPopover'
 import { CopyTextButton } from './CopyTextButton'
+import { textToCopyStyles, wrapperStyles } from './copyText.styles'
 import { useCopyText } from './useCopyText'
 
 type Props = {

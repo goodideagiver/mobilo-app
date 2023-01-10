@@ -1,8 +1,8 @@
 import { HStack } from '@chakra-ui/react'
-import { SHORTCUT_KEYS } from '../../../constants/shortcutKeys'
-import { HeaderNumberInput } from '../headerNumberInput'
 
+import { SHORTCUT_KEYS } from '../../../constants/shortcutKeys'
 import { VehicleMassToggle } from '../VehicleMassToggle/VehicleMassToggle'
+import { HeaderNumberInput } from '../headerNumberInput'
 import { useAppHeaderControls } from './useAppHeaderControls'
 
 export const AppHeaderControls = () => {

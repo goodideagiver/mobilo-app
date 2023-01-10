@@ -1,4 +1,5 @@
 import { useClipboard } from '@chakra-ui/react'
+
 import { replacePolishChars } from '../replacePolishChars'
 import { textErrorStyle, wrapperErrorStyle } from './copyText.styles'
 

@@ -1,6 +1,7 @@
 import { DeleteIcon, ViewIcon } from '@chakra-ui/icons'
 import { FormControl, FormLabel, HStack, IconButton, Switch, Tooltip, VStack } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
+
 import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { useHasServices } from '../../hooks/useHasServices'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'

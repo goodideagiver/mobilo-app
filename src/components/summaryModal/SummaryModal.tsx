@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react'
+
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 

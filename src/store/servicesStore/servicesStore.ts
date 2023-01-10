@@ -1,9 +1,10 @@
 import create from 'zustand'
-import { createDriveToPlaceSlice, DriveToPlaceSlice } from './driveToPlaceSlice'
-import { createEuroSlice, EuroCourseSlice } from './euroSlice'
+
+import { DriveToPlaceSlice, createDriveToPlaceSlice } from './driveToPlaceSlice'
+import { EuroCourseSlice, createEuroSlice } from './euroSlice'
 import { createServicesSlice } from './servicesSlice'
 import { ServicesSlice } from './servicesTypes'
-import { createSettingsSlice, SettingsSlice } from './settingsSlice'
+import { SettingsSlice, createSettingsSlice } from './settingsSlice'
 
 type BoundStore = SettingsSlice & ServicesSlice & DriveToPlaceSlice & EuroCourseSlice
 

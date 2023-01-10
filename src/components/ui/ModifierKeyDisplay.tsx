@@ -1,7 +1,7 @@
 import { Kbd, VStack } from '@chakra-ui/react'
 import { Key, ReactNode } from 'react'
-import { useKeyCombo } from '../../hooks/useKeyCombo'
 
+import { useKeyCombo } from '../../hooks/useKeyCombo'
 import styles from './ModifierKeyDisplay.module.css'
 
 type Props = {

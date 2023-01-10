@@ -1,4 +1,5 @@
 import { Badge, VStack } from '@chakra-ui/react'
+
 import { ServiceBadge } from '../../../store/servicesStore/servicesTypes'
 
 type Props = {

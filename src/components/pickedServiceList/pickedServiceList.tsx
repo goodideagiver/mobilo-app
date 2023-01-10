@@ -1,5 +1,6 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Button, Center, HStack, ScaleFade, Stack, Text } from '@chakra-ui/react'
+
 import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
 import { DocumentationBonus } from '../services/documentationBonus'

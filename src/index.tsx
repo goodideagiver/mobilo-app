@@ -1,14 +1,11 @@
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-
 import App from '@/App'
 import '@/assets/scss/style.scss'
-
 import { ChakraProvider } from '@chakra-ui/react'
+import { type ThemeConfig, extendTheme } from '@chakra-ui/react'
 import { StrictMode } from 'react'
-
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { BrowserRouter } from 'react-router-dom'
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',

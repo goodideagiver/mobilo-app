@@ -1,4 +1,5 @@
 import { Key, ReactNode } from 'react'
+
 import { ModifierKeyDisplay } from '../../../ui/ModifierKeyDisplay'
 
 type Props = {
