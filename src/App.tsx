@@ -1,4 +1,4 @@
-import { Stack, useDisclosure } from '@chakra-ui/react'
+import { Stack, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import { AppHeader } from './components/appHeader/appHeader'
@@ -11,10 +11,13 @@ const App = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
+
   return (
-    <Stack overflow='hidden' padding='4' gap='16px' h='100vh'>
-      <AppHeader summaryOpenHandler={onOpen} drawerOpenHandler={() => setDrawerOpen(true)} />
+    <Stack overflow='hidden' padding={isLargerThan800 ? 8 : 0} gap='16px' h='100vh'>
+      {isLargerThan800 && <AppHeader summaryOpenHandler={onOpen} drawerOpenHandler={() => setDrawerOpen(true)} />}
       <PickedServiceList drawerOpenHandler={() => setDrawerOpen(true)} />
+      {!isLargerThan800 && <AppHeader summaryOpenHandler={onOpen} drawerOpenHandler={() => setDrawerOpen(true)} />}
       <ServicePickDrawer isOpen={drawerOpen} drawerCloseHandler={() => setDrawerOpen(false)} />
       <SummaryModal isOpen={isOpen} onClose={onClose} />
     </Stack>

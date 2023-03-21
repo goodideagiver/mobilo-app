@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Text, VStack } from '@chakra-ui/react'
+import { Box, Center, Flex, Text, useMediaQuery, VStack } from '@chakra-ui/react'
 
 import { numberToOutputCurrencyString } from '../../helpers/numberToOutputCurrencyString'
 import { useServicesStore } from '../../store/servicesStore/servicesStore'
@@ -23,12 +23,16 @@ export const AppHeader = ({ drawerOpenHandler, summaryOpenHandler }: Props) => {
 
   const euroRateIsSet = Boolean(euroRate.rate && euroRate.rate > 0)
 
+  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
+
+  const padding = isLargerThan800 ? '0' : '8'
+
   return (
-    <Flex w='100%' align='center' justify='space-between' gap='2'>
+    <Flex padding={padding} w='100%' align='center' justify='space-between' gap='2'>
       <DrawerButton drawerOpenHandler={drawerOpenHandler} />
       <AppHeaderControls />
       {euroRateIsSet && (
-        <Box padding='8' rounded='2xl' border='4px' borderColor='blue.800' h='100%'>
+        <Box padding='2' rounded='2xl' border='4px' borderColor='blue.800' h='100%'>
           <Center h='100%'>
             <VStack>
               <Text fontWeight='bold'>Kurs EUR:</Text>
