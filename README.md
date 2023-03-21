@@ -2,6 +2,16 @@
 
 Wiele interaktywnych aplikacji internetowych skupia się na aspektach technicznych jakie ma posiadać tworzone programowanie: jaki wybrać język, w jaki sposób pobierać i zapisywać dane, ale często wśród osób, które są odpowiedzialne za implementacje interfejsów użytkownika zapomina się o wrażeniach użytkownika, nie analizuje się tego jak wygodniej będzie użytkownikowi obsłużyć interfejs, a jedynie skupia się wyłącznie na tym, aby aktualnie implementowana funkcjonalność działała tak jak opisano to w wymaganiach klienta lub osoby, która jest odpowiedzialna za nadzór nad pracą programistów w firmie. 
 
+## W tym projekcie znajduje się
+
+- [Wstęp](#wstęp)
+  * [Uzasadnienie powstania aplikacji](#uzasadnienie-powstania-aplikacji)
+  * [Główne założenia](#główne-założenia)
+  * [Technologie użyte w projekcie](#technologie-użyte-w-projekcie)
+  * [Galeria](#galeria)
+  
+## [🎈 Wersja Live](https://goodideagiver.github.io/mobilo-app/)
+
 ## Uzasadnienie powstania aplikacji
 
 Ubezpieczalnia oferuje usługę transportową dla klientów, którzy wykupią odpowiedni zakres ubezpieczenia auta. Ta usługa posiada szereg skomplikowanych zależności oraz wyłączenia, przez które rozliczanie jej jest utrudnione. 
