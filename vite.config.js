@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, 'env')
 
   return {
+    base: '/mobilo-app/',
     server: { hmr: true },
     plugins: [
       react({
