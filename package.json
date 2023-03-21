@@ -5,11 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "prod": "vite build",
+    "build": "tsc --noEmit && vite build",
     "release": "standard-version",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "bin": "./bin/react-vite-ts-boilerplate.js",
   "keywords": [
@@ -19,12 +20,14 @@
     "starter"
   ],
   "author": "Karol Bartkiewicz",
+  "homepage": "https://goodideagiver.github.io/mobilo-app",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "framer-motion": "^7.6.15",
+    "gh-pages": "^5.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
