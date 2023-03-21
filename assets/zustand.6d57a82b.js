@@ -1,0 +1,18 @@
+import{r as m,g as T}from"./vendor.2eb4e70c.js";const D=e=>{let t;const n=new Set,o=(s,S)=>{const c=typeof s=="function"?s(t):s;if(!Object.is(c,t)){const f=t;t=S??typeof c!="object"?c:Object.assign({},t,c),n.forEach(E=>E(t,f))}},r=()=>t,l={setState:o,getState:r,subscribe:s=>(n.add(s),()=>n.delete(s)),destroy:()=>{({VITE_TEST:"production",BASE_URL:"/mobilo-app/",MODE:"production",DEV:!1,PROD:!0}&&"production")!=="production"&&console.warn("[DEPRECATED] The `destroy` method will be unsupported in a future version. Instead use unsubscribe function returned by subscribe. Everything will be garbage-collected if store is garbage-collected."),n.clear()}};return t=e(o,r,l),l},V=e=>e?D(e):D;var g={exports:{}},b={},w={exports:{}},O={};/**
+ * @license React
+ * use-sync-external-store-shim.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var p=m.exports;function R(e,t){return e===t&&(e!==0||1/e===1/t)||e!==e&&t!==t}var _=typeof Object.is=="function"?Object.is:R,j=p.useState,I=p.useEffect,$=p.useLayoutEffect,P=p.useDebugValue;function A(e,t){var n=t(),o=j({inst:{value:n,getSnapshot:t}}),r=o[0].inst,u=o[1];return $(function(){r.value=n,r.getSnapshot=t,y(r)&&u({inst:r})},[e,n,t]),I(function(){return y(r)&&u({inst:r}),e(function(){y(r)&&u({inst:r})})},[e]),P(n),n}function y(e){var t=e.getSnapshot;e=e.value;try{var n=t();return!_(e,n)}catch{return!0}}function B(e,t){return t()}var C=typeof window>"u"||typeof window.document>"u"||typeof window.document.createElement>"u"?B:A;O.useSyncExternalStore=p.useSyncExternalStore!==void 0?p.useSyncExternalStore:C;(function(e){e.exports=O})(w);/**
+ * @license React
+ * use-sync-external-store-shim/with-selector.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var v=m.exports,L=w.exports;function M(e,t){return e===t&&(e!==0||1/e===1/t)||e!==e&&t!==t}var U=typeof Object.is=="function"?Object.is:M,k=L.useSyncExternalStore,q=v.useRef,z=v.useEffect,W=v.useMemo,F=v.useDebugValue;b.useSyncExternalStoreWithSelector=function(e,t,n,o,r){var u=q(null);if(u.current===null){var a={hasValue:!1,value:null};u.current=a}else a=u.current;u=W(function(){function s(i){if(!S){if(S=!0,c=i,i=o(i),r!==void 0&&a.hasValue){var d=a.value;if(r(d,i))return f=d}return f=i}if(d=f,U(c,i))return d;var x=o(i);return r!==void 0&&r(d,x)?d:(c=i,f=x)}var S=!1,c,f,E=n===void 0?null:n;return[function(){return s(t())},E===null?void 0:function(){return s(E())}]},[t,n,o,r]);var l=k(e,u[0],u[1]);return z(function(){a.hasValue=!0,a.value=l},[l]),F(l),l};(function(e){e.exports=b})(g);const G=T(g.exports),{useSyncExternalStoreWithSelector:H}=G;function J(e,t=e.getState,n){const o=H(e.subscribe,e.getState,e.getServerState||e.getState,t,n);return m.exports.useDebugValue(o),o}const h=e=>{({VITE_TEST:"production",BASE_URL:"/mobilo-app/",MODE:"production",DEV:!1,PROD:!0}&&"production")!=="production"&&typeof e!="function"&&console.warn("[DEPRECATED] Passing a vanilla store will be unsupported in a future version. Instead use `import { useStore } from 'zustand'`.");const t=typeof e=="function"?V(e):e,n=(o,r)=>J(t,o,r);return Object.assign(n,t),n},K=e=>e?h(e):h;var Q=e=>(({VITE_TEST:"production",BASE_URL:"/mobilo-app/",MODE:"production",DEV:!1,PROD:!0}&&"production")!=="production"&&console.warn("[DEPRECATED] Default export is deprecated. Instead use `import { create } from 'zustand'`."),K(e));export{Q as r};
+//# sourceMappingURL=zustand.6d57a82b.js.map
