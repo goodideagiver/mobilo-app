@@ -8,9 +8,14 @@ type ExtendedInfoStore = {
 }
 
 export const useExtendedInfoStore = create<ExtendedInfoStore>()(
-  persist((set) => ({
-    extendedInfo: true,
-    show: () => set({ extendedInfo: true }),
-    hide: () => set({ extendedInfo: false }),
-  })),
+  persist(
+    (set, get) => ({
+      extendedInfo: true,
+      show: () => set({ extendedInfo: true }),
+      hide: () => set({ extendedInfo: false }),
+    }),
+    {
+      name: 'extendedInfo',
+    },
+  ),
 )

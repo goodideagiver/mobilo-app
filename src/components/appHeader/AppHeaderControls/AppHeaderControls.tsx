@@ -9,7 +9,6 @@ import {
   Button,
   HStack,
   IconButton,
-  useBoolean,
   useDisclosure,
   useMediaQuery,
   VStack,
@@ -24,6 +23,11 @@ import { useAppHeaderControls } from './useAppHeaderControls'
 export const AppHeaderControls = () => {
   const { distanceAfterRepair, distanceAfterRepairInputHandler, distanceBeforeRepair, distanceInputHandler } =
     useAppHeaderControls()
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef(null)
+
+  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
   const distanceInputs = [
     {
@@ -48,11 +52,6 @@ export const AppHeaderControls = () => {
     </>
   )
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = useRef(null)
-
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
-
   if (!isLargerThan800) {
     return (
       <>
@@ -62,7 +61,7 @@ export const AppHeaderControls = () => {
           rounded='full'
           onClick={onOpen}
           aria-label='Edytuj usługi'
-          icon={<EditIcon fontSize='2xl' m='2' />}
+          icon={<EditIcon fontSize='3xl' m='2' />}
         />
         <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
           <AlertDialogOverlay>

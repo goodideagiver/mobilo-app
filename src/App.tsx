@@ -14,7 +14,7 @@ const App = () => {
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
   return (
-    <Stack overflow='hidden' padding={isLargerThan800 ? 8 : 0} gap='16px' h='100vh'>
+    <Stack overflow='hidden' padding={isLargerThan800 ? '8' : '0'} gap='16px' h='100vh'>
       {isLargerThan800 && <AppHeader summaryOpenHandler={onOpen} drawerOpenHandler={() => setDrawerOpen(true)} />}
       <PickedServiceList drawerOpenHandler={() => setDrawerOpen(true)} />
       {!isLargerThan800 && <AppHeader summaryOpenHandler={onOpen} drawerOpenHandler={() => setDrawerOpen(true)} />}

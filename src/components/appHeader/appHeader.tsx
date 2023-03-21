@@ -28,7 +28,7 @@ export const AppHeader = ({ drawerOpenHandler, summaryOpenHandler }: Props) => {
   const padding = isLargerThan800 ? '0' : '8'
 
   return (
-    <Flex padding={padding} w='100%' align='center' justify='space-between' gap='2'>
+    <Flex padding={8} w='100%' align='center' justify='space-between' gap='2'>
       <DrawerButton drawerOpenHandler={drawerOpenHandler} />
       <AppHeaderControls />
       {euroRateIsSet && (
