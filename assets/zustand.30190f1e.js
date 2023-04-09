@@ -1,4 +1,4 @@
-import{r as h,g as V}from"./vendor.21311c1b.js";const E=t=>{let e;const n=new Set,o=(s,d)=>{const c=typeof s=="function"?s(e):s;if(!Object.is(c,e)){const a=e;e=(d!=null?d:typeof c!="object")?c:Object.assign({},e,c),n.forEach(p=>p(e,a))}},r=()=>e,l={setState:o,getState:r,subscribe:s=>(n.add(s),()=>n.delete(s)),destroy:()=>n.clear()};return e=t(o,r,l),l},D=t=>t?E(t):E;var w={exports:{}},j={},O={exports:{}},$={};/**
+import{r as h,g as V}from"./vendor.a566c96c.js";const E=t=>{let e;const n=new Set,o=(s,d)=>{const c=typeof s=="function"?s(e):s;if(!Object.is(c,e)){const a=e;e=(d!=null?d:typeof c!="object")?c:Object.assign({},e,c),n.forEach(p=>p(e,a))}},r=()=>e,l={setState:o,getState:r,subscribe:s=>(n.add(s),()=>n.delete(s)),destroy:()=>n.clear()};return e=t(o,r,l),l},D=t=>t?E(t):E;var w={exports:{}},j={},O={exports:{}},$={};/**
  * @license React
  * use-sync-external-store-shim.production.min.js
  *
