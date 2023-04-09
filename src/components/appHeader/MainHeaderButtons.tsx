@@ -1,5 +1,5 @@
 import { DeleteIcon, ViewIcon } from '@chakra-ui/icons'
-import { FormControl, FormLabel, HStack, IconButton, Switch, Tooltip, VStack } from '@chakra-ui/react'
+import { FormControl, FormLabel, HStack, IconButton, Switch, Tooltip, VStack, useColorMode } from '@chakra-ui/react'
 import { ChangeEvent } from 'react'
 
 import { SHORTCUT_KEYS } from '../../constants/shortcutKeys'
@@ -18,6 +18,8 @@ export const MainHeaderButtons = ({ summaryOpenHandler }: Props) => {
   const { hasServices, hasServicesWithValue } = useHasServices()
 
   const { extendedInfo, hide, show } = useExtendedInfoStore((state) => state)
+
+  const { colorMode, toggleColorMode } = useColorMode()
 
   const extendedInfoSwitchHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -49,16 +51,28 @@ export const MainHeaderButtons = ({ summaryOpenHandler }: Props) => {
           </Tooltip>
         </ModifierKeyDisplay>
       </HStack>
-      <Tooltip hasArrow label={`Wyświetl ${extendedInfo ? 'mniej' : 'więcej'} informacji`} placement='left'>
-        <FormControl display='flex' alignItems='center'>
-          <VStack>
-            <FormLabel htmlFor='extended-info' mb='0'>
-              Informacje
-            </FormLabel>
-            <Switch isChecked={extendedInfo} onChange={extendedInfoSwitchHandler} id='extended-info' />
-          </VStack>
-        </FormControl>
-      </Tooltip>
+      <HStack>
+        <Tooltip hasArrow label={`Wyświetl ${extendedInfo ? 'mniej' : 'więcej'} informacji`} placement='left'>
+          <FormControl display='flex' alignItems='center'>
+            <VStack>
+              <FormLabel htmlFor='extended-info' m='0'>
+                Informacje
+              </FormLabel>
+              <Switch isChecked={extendedInfo} onChange={extendedInfoSwitchHandler} id='extended-info' />
+            </VStack>
+          </FormControl>
+        </Tooltip>
+        <Tooltip hasArrow label={`Zmień motyw kolorystyczny`} placement='left'>
+          <FormControl display='flex' alignItems='center'>
+            <VStack>
+              <FormLabel htmlFor='color-mode' m='0'>
+                Motyw
+              </FormLabel>
+              <Switch isChecked={colorMode === 'dark'} onChange={toggleColorMode} id='color-mode' />
+            </VStack>
+          </FormControl>
+        </Tooltip>
+      </HStack>
     </VStack>
   )
 }
