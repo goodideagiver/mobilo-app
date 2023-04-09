@@ -20,7 +20,7 @@ type Props = {
 
 const CategoryWrapper = ({ children, text }: { children: ReactNode; text: string }) => {
   return (
-    <Stack bg='gray.800' shadow={'lg'} w='100%' p='2' rounded={'md'}>
+    <Stack w='100%' p='2' rounded={'md'}>
       <Text>{text}</Text>
       {children}
     </Stack>
